@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Md Masum Talukder on 5/8/20 5:23 AM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 5/8/20 5:23 AM
+  ~  */
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/launcher_nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.masum.edu_portal.feature.launch.view.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popEnterAnim="@anim/slide_left"
+            app:popExitAnim="@anim/slide_right"
+            app:enterAnim="@anim/slide_right"
+            app:exitAnim="@anim/slide_left"/>
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.masum.edu_portal.feature.auth.LoginFragment"
+        android:label="LoginFragment"
+        app:popEnterAnim="@anim/slide_left"
+        app:popExitAnim="@anim/slide_right"
+        app:enterAnim="@anim/slide_right"
+        app:exitAnim="@anim/slide_left"/>
+
+</navigation>

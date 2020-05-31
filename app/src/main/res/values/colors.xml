@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0171B9</color>
+    <color name="colorPrimaryDark">@android:color/white</color>
+    <color name="colorAccent">#04A954</color>
+    <color name="white">#FFFFFF</color>
+    <color name="off_white">#FAFAFC</color>
+    <color name="deep_white">#E8ECEF</color>
+    <color name="off_white_background">#F8F8F8</color>
+    <color name="link">#428BCA</color>
+    <color name="facebookBlue">#3B5999</color>
+    <!-- Gradient Background Colors -->
+    <color name="sky_blue">#3EC7F3</color>
+    <color name="light_blue">#387FF4</color>
+    <color name="colorGradBellow">#0171B9</color>
+    <color name="colorGradCenter">#2AAB96</color>
+    <color name="scrim_grad_center">#1b1b1f</color>
+    <color name="red">#E30000</color>
+    <color name="colorBackWhite">@android:color/white</color>
+    <color name="colorBlack">@android:color/black</color>
+    <color name="text_color">#002349</color>
+
+    <!-- Bottom Navigation -->
+    <color name="colorBottomNavigationUnSelection">#7b6c7f</color>
+    <color name="colorBottomNavigationSelection">#50327e</color>
+
+    <!-- Drawer Item -->
+    <color name="colorDrawerText">#3a3d34</color>
+    <color name="colorVersionText">#666770</color>
+    <color name="gray">#707070</color>
+
+    <!-- shape Background-->
+    <color name="colorLeftRightArchBack">#eeeeee</color>
+
+    <!-- ripple Color -->
+    <color name="colorRippleDark">#8167a6</color>
+
+    <!--Notification count color -->
+    <color name="notificationCount">#ce580c</color>
+
+    <color name="searchTextColor">#7c7d88</color>
+    <color name="brown">#A1887F</color>
+
+    <color name="recyclerViewBack">#f6f8f4</color>
+
+    <color name="timeTextColor">#b3aba6</color>
+    <color name="light_gray">#A9A9A9</color>
+
+</resources>

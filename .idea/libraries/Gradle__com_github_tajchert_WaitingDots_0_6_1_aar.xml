@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.tajchert:WaitingDots:0.6.1@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0af227821fe0cb929343293e2d4eedee/jetified-WaitingDots-0.6.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0af227821fe0cb929343293e2d4eedee/jetified-WaitingDots-0.6.1/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.tajchert/WaitingDots/0.6.1/ac7ed267615562b47710fae32efd095ccd7de857/WaitingDots-0.6.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

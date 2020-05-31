@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ /**
+  ~  * Created by Md Masum Talukder on 5/8/20 11:02 PM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 5/8/20 11:02 PM
+  ~  */
+  -->
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.masum.edu_portal.feature.home.data.posts.Datum" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_10sdp"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img"
+                android:layout_width="@dimen/_37sdp"
+                android:layout_height="@dimen/_37sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:src="@drawable/cicle_img_p"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:text="@{data.fullNameEnglish}"
+                tools:text="Masum Talukder"
+                android:textStyle="bold"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintStart_toEndOf="@+id/img"
+                app:layout_constraintTop_toTopOf="@+id/img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.dateTime}"
+                tools:text="March 13,2020"
+                android:textSize="@dimen/_9sdp"
+                android:textColor="@color/light_gray"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintStart_toStartOf="@id/img"
+                app:layout_constraintTop_toBottomOf="@id/img"
+                android:textSize="@dimen/_13sdp"
+                android:text="@{data.title}"
+                android:textColor="@color/text_color"
+                android:justificationMode="inter_word"
+                tools:text="Title"/>
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="@id/img"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                android:textSize="@dimen/_12sdp"
+                android:text="@{data.postDetails}"
+                android:textColor="@color/text_color"
+                android:justificationMode="inter_word"
+                tools:text="typically referred to as the image, and the other image sizes should be based off of this image's inte"
+            />
+
+            <ImageView
+                android:id="@+id/img_status"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/person"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+</layout>

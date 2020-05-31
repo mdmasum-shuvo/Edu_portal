@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Md Masum Talukder on 5/7/20 7:55 AM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 5/7/20 7:55 AM
+  ~  */
+  -->
+
+<resources>
+    <integer name="anim_duration_medium">100</integer>
+</resources>

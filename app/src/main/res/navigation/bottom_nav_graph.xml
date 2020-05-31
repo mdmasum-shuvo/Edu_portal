@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/HomeDashboardFragment">
+    <fragment
+        android:id="@+id/HomeDashboardFragment"
+        android:name="com.masum.edu_portal.feature.home.view.HomeDashboardFragment"
+        android:label="HomeDashboardFragment" >
+
+        <action
+            android:id="@+id/action_HomeDashboardFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/GalleryFragment"
+        android:name="com.masum.edu_portal.feature.member.view.GalleryFragment"
+        android:label="GalleryFragment" >
+
+        <action
+            android:id="@+id/action_GalleryFragment_to_PaymentFragment"
+            app:destination="@id/NotificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/NotificationFragment"
+        android:name="com.masum.edu_portal.feature.home.view.NotificationFragment"
+        android:label="PaymentFragment" >
+        <action
+            android:id="@+id/action_PaymentFragment_to_AboutOcdFragment"
+            app:destination="@id/AboutOcdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AboutOcdFragment"
+        android:name="com.masum.edu_portal.feature.home.view.AboutOcdFragment"
+        android:label="AboutOcdFragment" >
+
+        <action
+            android:id="@+id/action_AboutOcdFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popEnterAnim="@anim/slide_left"
+            app:popExitAnim="@anim/slide_right"
+            app:enterAnim="@anim/slide_right"
+            app:exitAnim="@anim/slide_left" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.masum.edu_portal.feature.home.view.PostFragment"
+        android:label="PostFragment" >
+        <action
+            android:id="@+id/action_postFragment_to_GalleryFragment"
+            app:destination="@id/GalleryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.masum.edu_portal.feature.member.view.ProfileFragment"
+        android:label="ProfileFragment"   app:popEnterAnim="@anim/slide_left"
+        app:popExitAnim="@anim/slide_right"
+        app:enterAnim="@anim/slide_right"
+        app:exitAnim="@anim/slide_left"/>
+</navigation>

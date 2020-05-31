@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Md Masum Talukder on 5/7/20 7:54 AM
+  ~  * Copyright (c) 2020 . All rights reserved.
+  ~  * Last modified 5/7/20 7:54 AM
+  ~  */
+  -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="@integer/anim_duration_medium">
+
+    <translate
+        android:fromYDelta="-20%"
+        android:toYDelta="0"
+        android:interpolator="@android:anim/decelerate_interpolator"
+        />
+
+    <alpha
+        android:fromAlpha="0"
+        android:toAlpha="1"
+        android:interpolator="@android:anim/decelerate_interpolator"
+        />
+
+    <scale
+        android:fromXScale="105%"
+        android:fromYScale="105%"
+        android:toXScale="100%"
+        android:toYScale="100%"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:interpolator="@android:anim/decelerate_interpolator"
+        />
+
+</set>

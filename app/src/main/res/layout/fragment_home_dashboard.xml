@@ -1,0 +1,104 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/pullToRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:paddingBottom="@dimen/_50sdp">
+                    <include
+                        android:id="@+id/Search_layout"
+                        layout="@layout/player_layout"
+                        />
+                    <RelativeLayout
+                        android:id="@+id/card_dashboard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="@dimen/_1sdp"
+                        android:background="@color/off_white_background"
+                        app:layout_constraintTop_toBottomOf="@+id/Search_layout"
+                        >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                           >
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvDashboard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawSelectorOnTop="true"
+                                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_membr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:text="My Classmates"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:textColor="@color/text_color"
+                        app:layout_constraintTop_toBottomOf="@id/card_dashboard"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvMemberList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:drawSelectorOnTop="true"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_constraintStart_toStartOf="@+id/tv_membr"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_membr" />
+
+                    <TextView
+                        android:id="@+id/tv_feed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:text="@string/upcomming_exam"
+                        android:textColor="@color/text_color"
+                        app:layout_constraintTop_toBottomOf="@id/rvMemberList"
+                        app:layout_constraintStart_toStartOf="@+id/rvMemberList"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvnewsFeed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:drawSelectorOnTop="true"
+                        android:background="@color/off_white"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_constraintStart_toStartOf="@+id/tv_feed"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_feed" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <include
+            layout="@layout/show_empty_view"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

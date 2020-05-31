@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.masum.edu_portal"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 4
+        versionName "1.3"
+
+        buildConfigField "String", "BASE_URL", "\"" + getBaseUrl() + "\""
+        buildConfigField "String", "IMG_URL", "\"" + getImageUrl() + "\""
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    //SDP for View Scaling
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    // Glide
+    def glide_version = "4.9.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    // Glide Annotation
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    // circular image view
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
+    def lifecycle_version = "1.1.1"
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    implementation "android.arch.persistence.room:runtime:$lifecycle_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$lifecycle_version"
+    // Jsoup
+    implementation 'org.jsoup:jsoup:1.10.2'
+    //retrofit
+    def retrofit_version = "2.6.0"
+    // network call related libraries
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version" // REST API calling library
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version" // JSON parsing library
+    implementation('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
+        // HTTP pretty log printing library
+        exclude group: 'org.json', module: 'json'
+    }
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
+    // Loading Dots
+    implementation 'com.github.tajchert:WaitingDots:0.6.1'
+
+    def dagger = "2.20"
+    implementation "com.google.dagger:dagger-android:$dagger"
+    implementation "com.google.dagger:dagger-android-support:$dagger"
+    // if you use the support libraries
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger"
+    kapt "com.google.dagger:dagger-compiler:$dagger"
+
+    implementation 'com.treebo:internetavailabilitychecker:1.0.4'
+    //navigation component
+    def nav_version = "2.1.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation 'com.google.android.play:core:1.7.2'
+
+}
+
+def getBaseUrl() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    String baseUrl = properties.getProperty("base_url")
+    if (baseUrl == null)
+        throw new GradleException("Add 'base_url' field at local.properties file. For more details: https://github.com/hasancse91/weather-app-android-mvvm/blob/master/README.md")
+
+    return baseUrl
+}
+
+def getImageUrl() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    String imgUrl = properties.getProperty("img_url")
+    if (imgUrl == null)
+        throw new GradleException("Add 'app_id' field at local.properties file. For more details: https://github.com/hasancse91/weather-app-android-mvvm/blob/master/README.md")
+
+    return imgUrl
+}

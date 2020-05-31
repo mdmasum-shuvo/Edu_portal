@@ -1,0 +1,62 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="elevation">0dp</item>
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+    </style>
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorGradBellow</item>
+        <item name="colorPrimary">@color/colorGradBellow</item>
+        <item name="colorPrimaryDark">@color/red</item>
+
+    </style>
+    <!-- Bottom Sheet Rounded Corner -->
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_up_arch</item>
+    </style>
+
+    <style name="viewParent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="blue_button" parent="viewParent">
+        <item name="android:background">@drawable/blue_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+
+
+    </style>
+    <!-- Transition -->
+    <style name="AppTheme.Home">
+        <item name="android:windowExitTransition" tools:targetApi="lollipop">@transition/exit</item>
+    </style>
+    <!-- Navigation Drawer -->
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">@dimen/_10sdp</item><!-- text size in menu-->
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <!-- item size in menu-->
+        <item name="android:listPreferredItemHeightSmall">@dimen/_40sdp</item>
+        <item name="listPreferredItemHeightSmall">@dimen/_40sdp</item>
+    </style>
+
+    <!--colupsing style  -->
+
+    <style name="ExpandedTittleStyle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="CollapsedTittleStyle" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+</resources>

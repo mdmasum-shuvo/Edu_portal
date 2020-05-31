@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/HomeDashboardFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/bottom_nav_home"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/postFragment"
+        android:enabled="true"
+        android:icon="@drawable/post"
+        android:title="@string/bottom_nav_post"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/NotificationFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_notification"
+        android:title="@string/bottom_nav_notification"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/GalleryFragment"
+        android:enabled="true"
+        android:icon="@drawable/gallery"
+        android:title="@string/bottom_nav_gallery"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/AboutOcdFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_about_us"
+        android:title="@string/bottom_nav_about_ocd"
+        app:showAsAction="ifRoom" />
+
+</menu>

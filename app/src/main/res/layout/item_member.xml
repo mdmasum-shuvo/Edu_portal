@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="data"
+            type="com.masum.edu_portal.feature.member.data.memberinfolist.Datum"/>
+    </data>
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/item_member"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/_150sdp"
+    card_view:cardCornerRadius="@dimen/_2sdp"
+    android:layout_marginTop="@dimen/_6sdp"
+    android:layout_marginBottom="@dimen/_6sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="@drawable/ripple_dark"
+    card_view:cardElevation="@dimen/_2sdp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:transitionName="@string/doctorTransition"
+            android:id="@+id/member_image"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:src="@drawable/img"
+            android:layout_height="@dimen/_70sdp"
+            android:contentDescription="@string/empty_content_description"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/doc_name"
+            android:textSize="@dimen/_11sdp"
+            android:text="@{String.valueOf(data.membershipId)}"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="bold"
+            android:textColor="@color/text_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/member_image"
+            card_view:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:textSize="@dimen/_9sdp"
+            android:textColor="@color/text_color"
+            android:id="@+id/doc_education"
+            android:text="@{data.fullNameEnglish}"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/doc_name"
+            card_view:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:id="@+id/doc_speciality"
+            android:text="@{data.designationName}"
+            android:maxLines="1"
+            android:textSize="@dimen/_9sdp"
+            android:textColor="@color/searchTextColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/doc_education"
+            card_view:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:text="@{data.mobile}"
+            android:maxLines="1"
+            android:textSize="@dimen/_8sdp"
+            android:textColor="@color/searchTextColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:layout_constraintTop_toBottomOf="@+id/doc_speciality"
+            card_view:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            android:id="@+id/btnPhone"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:background="@color/text_color"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/ripple_dark"
+            android:src="@drawable/ic_phone_white"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+</layout>
