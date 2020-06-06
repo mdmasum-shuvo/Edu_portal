@@ -17,6 +17,7 @@
     android:layout_marginEnd="@dimen/_10sdp"
     android:clickable="true"
     android:focusable="true"
+    card_view:cardBackgroundColor="@color/deep_white"
     android:foreground="@drawable/ripple_dark"
     card_view:cardElevation="@dimen/_2sdp">
     <androidx.constraintlayout.widget.ConstraintLayout

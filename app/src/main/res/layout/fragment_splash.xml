@@ -19,7 +19,7 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_150sdp"
             android:layout_marginBottom="@dimen/_100sdp"
-            android:src="@drawable/ocd_logo"
+            android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="@dimen/_2sdp"
-                android:background="@color/colorPrimary"
                 android:text="@string/it_support"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_11sdp" />

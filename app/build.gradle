@@ -11,8 +11,8 @@ android {
         applicationId "com.masum.edu_portal"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.3"
+        versionCode 1
+        versionName "1.0"
 
         buildConfigField "String", "BASE_URL", "\"" + getBaseUrl() + "\""
         buildConfigField "String", "IMG_URL", "\"" + getImageUrl() + "\""
@@ -103,7 +103,7 @@ def getBaseUrl() {
 
     String baseUrl = properties.getProperty("base_url")
     if (baseUrl == null)
-        throw new GradleException("Add 'base_url' field at local.properties file. For more details: https://github.com/hasancse91/weather-app-android-mvvm/blob/master/README.md")
+        throw new GradleException("")
 
     return baseUrl
 }
@@ -114,7 +114,7 @@ def getImageUrl() {
 
     String imgUrl = properties.getProperty("img_url")
     if (imgUrl == null)
-        throw new GradleException("Add 'app_id' field at local.properties file. For more details: https://github.com/hasancse91/weather-app-android-mvvm/blob/master/README.md")
+        throw new GradleException("")
 
     return imgUrl
 }

@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.masum.edu_portal.BuildConfig
@@ -210,6 +211,7 @@ class HomeActivity : BaseActivity() {
             supportFragmentManager.findFragmentById(R.id.fragNavHost) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(home_bottom_nav_menu, navHostFragment.navController)
+        NavigationUI.setupActionBarWithNavController(this, navController)
         //var appBarConfiguration = AppBarConfiguration(navHostFragment.navController.graph)
 
         var appBarConfiguration = AppBarConfiguration(
@@ -245,6 +247,11 @@ class HomeActivity : BaseActivity() {
         home_bottom_nav_menu.visibility = View.GONE
     }
 
+
+    override fun onSupportNavigateUp(): Boolean {
+        navController.navigateUp()
+        return super.onSupportNavigateUp()
+    }
 
     private fun loadFragment(fragment: Fragment?): Boolean {
         if (fragment != null) {

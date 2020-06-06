@@ -9,9 +9,11 @@
 </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
-        android:layout_width="@dimen/_68sdp"
-        android:layout_height="@dimen/_90sdp"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:gravity="center"
         android:clickable="true"
         android:focusable="true"
@@ -20,8 +22,8 @@
 
         <RelativeLayout
             android:id="@+id/rv"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_62sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_48sdp"
             android:background="@drawable/circle_deep_white"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,13 +45,12 @@
 
         <TextView
             android:layout_marginTop="@dimen/_3sdp"
-            android:textSize="@dimen/_11sdp"
-            android:maxLines="2"
+            android:textSize="@dimen/_9sdp"
             android:textColor="@color/text_color"
             android:gravity="center"
             android:id="@+id/tvItemName"
-            android:text="my text"
-            android:layout_width="@dimen/_70sdp"
+            android:text="Exam/Result"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/rv"
             app:layout_constraintStart_toStartOf="@+id/rv"

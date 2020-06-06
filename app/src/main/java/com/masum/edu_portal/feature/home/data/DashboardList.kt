@@ -28,14 +28,14 @@ class DashboardList constructor(val context: Context?) {
         )
         list!!.add(
             Dashboard(
-                "Exam/\nResult",
+                "Exam/Result",
                 context.resources.getDrawable(R.drawable.exam, context.theme)
             )
         )
         list!!.add(
             Dashboard(
                 "Homework",
-                context.resources.getDrawable(R.drawable.home_work, context.theme)
+                context.resources.getDrawable(R.drawable.homework, context.theme)
             )
         )
         list!!.add(
