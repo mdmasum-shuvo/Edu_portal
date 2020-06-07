@@ -14,14 +14,15 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.masum.edu_portal.feature.launch.view.SplashFragment"
-        android:label="SplashFragment" >
+        android:label="SplashFragment"
+        >
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popEnterAnim="@anim/slide_left"
-            app:popExitAnim="@anim/slide_right"
+
             app:enterAnim="@anim/slide_right"
-            app:exitAnim="@anim/slide_left"/>
+            app:exitAnim="@anim/slide_left"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -29,7 +30,6 @@
         android:label="LoginFragment"
         app:popEnterAnim="@anim/slide_left"
         app:popExitAnim="@anim/slide_right"
-        app:enterAnim="@anim/slide_right"
-        app:exitAnim="@anim/slide_left"/>
+/>
 
 </navigation>

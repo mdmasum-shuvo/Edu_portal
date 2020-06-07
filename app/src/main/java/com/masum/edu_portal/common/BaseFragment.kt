@@ -6,12 +6,14 @@ import android.app.DatePickerDialog.OnDateSetListener
 import android.app.ProgressDialog
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
+import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -31,6 +33,7 @@ open abstract class BaseFragment : Fragment(), InternetConnectivityListener,
     var isManualRefreshing = false
     var isInternetConnected = false
     private var progressDialog: ProgressDialog? = null
+    private var mToolbar: Toolbar? = null
 
     private var mDatePickerDialog: DatePickerDialog? = null
     private var mTimePicker: TimePickerDialog? = null
@@ -66,6 +69,15 @@ open abstract class BaseFragment : Fragment(), InternetConnectivityListener,
             showInterNotAvailableView()
         }
     }
+
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    protected fun setOnlyStatusBarTransparent() {
+
+        mActivity!!.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        mActivity!!.window.statusBarColor = Color.TRANSPARENT
+    }
+
 
     fun showEmptyView() {
         noDataView.visibility = View.VISIBLE
