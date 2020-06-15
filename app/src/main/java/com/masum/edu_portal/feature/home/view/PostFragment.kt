@@ -28,7 +28,6 @@ import com.masum.edu_portal.databinding.FragmentPostBinding
 import com.masum.edu_portal.feature.home.data.posts.Datum
 import com.masum.edu_portal.feature.member.adapter.MemberPostAdapter
 import com.masum.edu_portal.repository.HomeRepository
-import com.masum.edu_portal.viewmodel.MyViewModel
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 
 class PostFragment : BaseFragment() {

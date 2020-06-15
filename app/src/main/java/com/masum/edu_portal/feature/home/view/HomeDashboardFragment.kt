@@ -35,7 +35,6 @@ import com.masum.edu_portal.feature.home.data.notifications.Notification
 import com.masum.edu_portal.feature.member.adapter.MemberListAdapter
 import com.masum.edu_portal.feature.member.data.memberinfolist.Datum
 import com.masum.edu_portal.repository.HomeRepository
-import com.masum.edu_portal.viewmodel.MyViewModel
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 
 class HomeDashboardFragment : BaseFragment() {

@@ -80,7 +80,7 @@
                             android:textColorHint="@color/gray">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/et_phone"
+                                android:id="@+id/et_user_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_30sdp"
                                 android:layout_marginTop="@dimen/_5sdp"
@@ -110,7 +110,7 @@
                             app:passwordToggleEnabled="true">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/et_member_id"
+                                android:id="@+id/et_password"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_30sdp"
                                 android:background="@drawable/shape_lef_right_arch_gray"

@@ -13,24 +13,27 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.masum.edu_portal.R
+import com.masum.edu_portal.di.MySharedPreferences
 import com.masum.edu_portal.utils.AnimationUtility
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 import kotlinx.android.synthetic.main.show_empty_view.*
+import javax.inject.Inject
 
-open abstract class BaseActivity : AppCompatActivity(), InternetConnectivityListener,  SwipeRefreshLayout.OnRefreshListener  {
+open abstract class BaseActivity : DaggerAppCompatActivity(), InternetConnectivityListener,  SwipeRefreshLayout.OnRefreshListener  {
 
     private var binding: ViewDataBinding? = null
     private var progressDialog: ProgressDialog? = null
     private var mToolbar: Toolbar? = null
     private var mInternetAvailabilityChecker: InternetAvailabilityChecker? = null
+    var mySharedPreferences: MySharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,7 @@ open abstract class BaseActivity : AppCompatActivity(), InternetConnectivityList
         initComponent()
         initFunctionality()
         initListener()
+
     }
 
     override fun onRefresh() {

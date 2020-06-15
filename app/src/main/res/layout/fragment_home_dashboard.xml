@@ -28,7 +28,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:cardElevation="@dimen/_1sdp"
-                        android:background="@color/deep_white"
+                        android:background="@color/white2"
                         app:layout_constraintTop_toBottomOf="@+id/Search_layout"
                         >
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,7 +67,6 @@
                         android:id="@+id/rvMemberList"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
                         android:drawSelectorOnTop="true"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_constraintStart_toStartOf="@+id/tv_membr"
@@ -87,9 +86,8 @@
                         android:id="@+id/rvnewsFeed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_15sdp"
                         android:drawSelectorOnTop="true"
-                        android:background="@color/off_white"
+                        android:background="@color/white"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
                         app:layout_constraintStart_toStartOf="@+id/tv_feed"
                         app:layout_constraintTop_toBottomOf="@+id/tv_feed" />

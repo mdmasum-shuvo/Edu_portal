@@ -11,4 +11,6 @@ package com.masum.edu_portal.common
 object Constant {
     const val DATE_PATTERN = "yyyy-MM-dd HH:mm:ss"
     const val TEXT_DATE_PATTERN = "d MMM yyyy hh:mm a"
+
+    const val PREF_NAME="pref"
 }

@@ -8,7 +8,6 @@
 
 package com.masum.edu_portal.common.callback_listener
 
-import com.masum.edu_portal.feature.auth.datamodel.Member
 import okhttp3.MultipartBody
 
 interface AuthenticationRequest {

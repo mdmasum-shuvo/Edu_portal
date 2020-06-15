@@ -16,7 +16,6 @@ import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
 import com.masum.edu_portal.common.callback_listener.HomeUserDataLoadListener
 import com.masum.edu_portal.repository.HomeRepository
-import com.masum.edu_portal.viewmodel.MyViewModel
 import kotlinx.android.synthetic.main.activity_notification.*
 import kotlinx.android.synthetic.main.fragment_post.pullToRefresh
 

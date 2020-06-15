@@ -1,6 +1,5 @@
 package com.masum.edu_portal.networks
 
-import com.masum.edu_portal.feature.auth.datamodel.LoginResponse
 import com.masum.edu_portal.feature.home.data.CommiteeMemberResponse
 import com.masum.edu_portal.feature.home.data.NotificaitonSaveResponse
 import com.masum.edu_portal.feature.home.data.about.AboutUsDataResponse
@@ -15,15 +14,9 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface ApiService {
 
-    //auth
-    @POST(HTTP_PARAM.LOGIN)
-    open fun authentication(
-        @Body requestBody: RequestBody
-    ): Call<LoginResponse>
 
     //comitee
     @POST(HTTP_PARAM.COMMITEE_LIST)

@@ -1,19 +1,13 @@
 package com.masum.edu_portal.common
 
-import android.app.Application
-import android.content.Context
+import com.masum.edu_portal.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
-class MyApplication :Application() {
-
-
-    private var application: Application? = null
-
-   override fun onCreate() {
-        super.onCreate()
-        application = this
+class MyApplication : DaggerApplication() {
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.builder().bindApplicationInstance(this).build()
     }
 
-    fun getContext(): Context? {
-        return application
-    }
+
 }

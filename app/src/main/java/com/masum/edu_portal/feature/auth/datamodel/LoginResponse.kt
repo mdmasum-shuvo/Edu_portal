@@ -1,22 +1,35 @@
-/*
- * *
- *  * Created by Md Masum Talukder on 5/8/20 6:08 AM
- *  * Copyright (c) 2020 . All rights reserved.
- *  * Last modified 5/8/20 6:08 AM
- *
- */
 package com.masum.edu_portal.feature.auth.datamodel
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class LoginResponse {
-    @SerializedName("status")
+ class LoginResponse constructor() {
+    @SerializedName("access_token")
     @Expose
-    var status: String? = null
+    var accessToken: String? = null
 
-    @SerializedName("member")
+    @SerializedName("token_type")
     @Expose
-    var member: Member? = null
+    var tokenType: String? = null
+
+    @SerializedName("expires_in")
+    @Expose
+    var expiresIn: Int? = null
+
+    @SerializedName("user_info")
+    @Expose
+    var userInfo: UserInfo? = null
+
+    @SerializedName("member_info")
+    @Expose
+    var memberInfo: String? = null
+
+    @SerializedName("student_info")
+    @Expose
+    var studentInfo: String? = null
+
+    @SerializedName("academic_info")
+    @Expose
+    var academicInfo: List<String>? = null
 
 }

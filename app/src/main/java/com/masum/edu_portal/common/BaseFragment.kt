@@ -21,11 +21,12 @@ import com.masum.edu_portal.R
 import com.masum.edu_portal.utils.AnimationUtility
 import com.treebo.internetavailabilitychecker.InternetAvailabilityChecker
 import com.treebo.internetavailabilitychecker.InternetConnectivityListener
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 import kotlinx.android.synthetic.main.show_empty_view.*
 import java.util.*
 
-open abstract class BaseFragment : Fragment(), InternetConnectivityListener,
+open abstract class BaseFragment : DaggerFragment(), InternetConnectivityListener,
     SwipeRefreshLayout.OnRefreshListener {
     private var binding: ViewDataBinding? = null
     var mActivity: Activity? = null

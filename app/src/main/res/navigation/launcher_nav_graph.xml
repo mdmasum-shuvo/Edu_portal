@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.masum.edu_portal.feature.auth.LoginFragment"
+        android:name="com.masum.edu_portal.feature.auth.view.LoginFragment"
         android:label="LoginFragment"
         app:popEnterAnim="@anim/slide_left"
         app:popExitAnim="@anim/slide_right"

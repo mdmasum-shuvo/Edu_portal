@@ -20,7 +20,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.masum.edu_portal.BuildConfig
@@ -31,7 +30,6 @@ import com.masum.edu_portal.feature.home.data.about.AboutU
 import com.masum.edu_portal.common.callback_listener.HomeUserDataLoadListener
 import com.masum.edu_portal.feature.member.data.memberinfolist.Datum
 import com.masum.edu_portal.feature.member.view.ProfileActivity
-import com.masum.edu_portal.viewmodel.MyViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.colupsing_toolbar_layout.*
 import kotlinx.android.synthetic.main.content_home.*
