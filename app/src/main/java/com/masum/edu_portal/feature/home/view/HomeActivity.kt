@@ -15,7 +15,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -27,7 +26,6 @@ import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
 import com.masum.edu_portal.databinding.ActivityHomeBinding
 import com.masum.edu_portal.feature.home.data.about.AboutU
-import com.masum.edu_portal.common.callback_listener.HomeUserDataLoadListener
 import com.masum.edu_portal.feature.member.data.memberinfolist.Datum
 import com.masum.edu_portal.feature.member.view.ProfileActivity
 import kotlinx.android.synthetic.main.activity_home.*
@@ -45,10 +43,6 @@ class HomeActivity : BaseActivity() {
     private lateinit var navControllerNested: NavController
     private lateinit var binding: ActivityHomeBinding
     private lateinit var mActivity: Activity
-    private lateinit var viewModel: MyViewModel
-    private lateinit var listener: HomeUserDataLoadListener
-    private var memberPageNumber: Int = 1
-    private lateinit var homeFragment: HomeDashboardFragment
     private var memberList = ArrayList<Datum>()
     private var aboutUsLIst = ArrayList<AboutU>()
     override fun getLayoutResourceFile(): Int {
@@ -73,10 +67,6 @@ class HomeActivity : BaseActivity() {
        // callData()
     }
 
-    private fun callData() {
-        viewModel.getAboutUsDataList(listener);
-        viewModel.getMemberList(memberPageNumber, listener);
-    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initListener() {
@@ -90,41 +80,8 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun callLiveDataListener() {
-        viewModel.aboutUsMutableDataList.observe(this, object : Observer<List<AboutU>> {
-            override fun onChanged(data: List<AboutU>) {
-                aboutUsLIst.addAll(data)
-            }
-        })
-
-        viewModel.memberMutableDataList.observe(this, object : Observer<List<Datum>> {
-            override fun onChanged(data: List<Datum>) {
-                when (memberPageNumber) {
-                    1 -> {
-                        if (!memberList.isEmpty()) {
-                            memberList.clear()
-                        }
-                        memberList.addAll(data)
-
-                    }
-                    else -> {
-                        memberList.addAll(data)
-                    }
-                }
-            }
-        })
-
-        viewModel.isProgressLoad.observe(this, object : Observer<Boolean> {
-            override fun onChanged(isProgressLoad: Boolean) {
-
-            }
-        })
 
 
-        viewModel.isDataLoadFailed.observe(this, object : Observer<String> {
-            override fun onChanged(errorText: String) {
-
-            }
-        })
     }
 
     private fun clearList() {

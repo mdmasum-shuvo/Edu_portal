@@ -17,12 +17,12 @@ class SessionManager @Inject constructor(){
 
     fun authenticationUser(source: LiveData<AuthResource<LoginResponse>>){
         if (cechedUser != null) {
-            cechedUser.setValue(AuthResource.loading(null))
+           cechedUser.value= AuthResource.loading()
             cechedUser.addSource(
                 source,
                 object : Observer<AuthResource<LoginResponse>> {
                     override fun onChanged(userAuthResource: AuthResource<LoginResponse>) {
-                        cechedUser.setValue(userAuthResource)
+                        cechedUser.value=userAuthResource
                         cechedUser.removeSource(source)
                     }
                 })

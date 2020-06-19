@@ -18,7 +18,7 @@ import com.masum.edu_portal.di.ViewModelProviderFactory
 import com.masum.edu_portal.feature.auth.datamodel.AuthResource
 import com.masum.edu_portal.feature.auth.datamodel.LoginResponse
 import com.masum.edu_portal.feature.home.view.HomeActivity
-import com.masum.edu_portal.viewmodel.AuthViewModel
+import com.masum.edu_portal.myviewmodel.AuthViewModel
 import javax.inject.Inject
 
 
@@ -28,7 +28,7 @@ class LoginFragment : BaseFragment() {
     private lateinit var viewmodel: AuthViewModel
 
     @Inject
-    var viewModelProviderFactory: ViewModelProviderFactory? = null
+    lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,13 +68,17 @@ class LoginFragment : BaseFragment() {
         viewmodel.observeLogin()
             .observe(this, Observer<AuthResource<LoginResponse>> { userAuthResource ->
                 if (userAuthResource != null) {
-                    showProgressDialog()
                     when (userAuthResource.status) {
+
+                        AuthResource.AuthStatus.LOADING -> {
+                            showProgressDialog()
+                        }
                         AuthResource.AuthStatus.ERROR -> {
+                            hideProgressDialog()
                             Log.e("data", userAuthResource.message)
                         }
                         AuthResource.AuthStatus.AUTHENTICATED -> {
-                            startActivity(Intent(activity,HomeActivity::class.java))
+                            //startActivity(Intent(activity, HomeActivity::class.java))
                             Log.e("data", userAuthResource.data!!.accessToken)
                             hideProgressDialog()
                         }

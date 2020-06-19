@@ -10,18 +10,13 @@ package com.masum.edu_portal.feature.home.view
 
 import android.app.Activity
 import android.os.Build
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
-import com.masum.edu_portal.common.callback_listener.HomeUserDataLoadListener
-import com.masum.edu_portal.repository.HomeRepository
 import kotlinx.android.synthetic.main.activity_notification.*
 import kotlinx.android.synthetic.main.fragment_post.pullToRefresh
 
 class NotificationActivity : BaseActivity() {
-    private lateinit var viewModel: MyViewModel
-    private lateinit var listener: HomeUserDataLoadListener
     private lateinit var mActivity: Activity
 
     override fun getLayoutResourceFile(): Int {
@@ -30,8 +25,7 @@ class NotificationActivity : BaseActivity() {
 
     override fun initComponent() {
         mActivity = this
-        listener = HomeRepository()
-        viewModel = ViewModelProviders.of(this).get(MyViewModel::class.java)
+
         setNotificationBarTransparent()
         setNotificationBarBlackNWhite()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -55,7 +49,6 @@ class NotificationActivity : BaseActivity() {
     }
 
     private fun callData() {
-        viewModel.getAllNotification(listener)
     }
 
     override fun onInternetConnectivityChanged(isConnected: Boolean) {

@@ -14,15 +14,15 @@
         <activity android:name="com.masum.edu_portal.feature.home.view.NotificationActivity"></activity>
         <activity android:name="com.masum.edu_portal.feature.home.view.UploadPostActivity" />
         <activity android:name="com.masum.edu_portal.feature.launch.view.LauncherActivity" >
-
-        </activity>
-        <activity android:name="com.masum.edu_portal.feature.member.view.ProfileActivity" />
-        <activity android:name="com.masum.edu_portal.feature.home.view.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.masum.edu_portal.feature.member.view.ProfileActivity" />
+        <activity android:name="com.masum.edu_portal.feature.home.view.HomeActivity">
+
         </activity>
     </application>
 

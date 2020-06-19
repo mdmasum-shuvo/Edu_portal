@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 class UserInfo {
     @SerializedName("user_id")
     @Expose
-    var userId: Int? = null
+    var userId: Int? = 0
 
     @SerializedName("username")
     @Expose
@@ -22,11 +22,11 @@ class UserInfo {
 
     @SerializedName("confirmed")
     @Expose
-    var confirmed: Int? = null
+    var confirmed: Int? = 0
 
     @SerializedName("is_active")
     @Expose
-    var isActive: Int? = null
+    var isActive: Int? = 0
 
     @SerializedName("activated_by")
     @Expose
@@ -38,7 +38,7 @@ class UserInfo {
 
     @SerializedName("is_portal_locked")
     @Expose
-    var isPortalLocked: Int? = null
+    var isPortalLocked: Int? = 0
 
     @SerializedName("portal_locked_by")
     @Expose
@@ -50,7 +50,7 @@ class UserInfo {
 
     @SerializedName("is_mail_confirmed")
     @Expose
-    var isMailConfirmed: Int? = null
+    var isMailConfirmed: Int? = 0
 
     @SerializedName("phone")
     @Expose
@@ -58,11 +58,11 @@ class UserInfo {
 
     @SerializedName("is_phone_confirmed")
     @Expose
-    var isPhoneConfirmed: Int? = null
+    var isPhoneConfirmed: Int? = 0
 
     @SerializedName("is_two_factor_enabled")
     @Expose
-    var isTwoFactorEnabled: Int? = null
+    var isTwoFactorEnabled: Int? = 0
 
     @SerializedName("theme")
     @Expose
@@ -82,7 +82,7 @@ class UserInfo {
 
     @SerializedName("updated_by")
     @Expose
-    var updatedBy: Int? = null
+    var updatedBy: Int? = 0
 
     @SerializedName("image_version")
     @Expose

@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.masum.edu_portal.BuildConfig
 import com.masum.edu_portal.common.Constant
+import com.masum.edu_portal.networks.ApiService
+import com.masum.edu_portal.networks.AuthApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -30,5 +32,10 @@ open class AppModule {
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
+    @Singleton
+    @Provides
+    fun provideAuthApi(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
+    }
 
 }

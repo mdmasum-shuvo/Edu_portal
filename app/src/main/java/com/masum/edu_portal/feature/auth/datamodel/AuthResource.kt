@@ -7,19 +7,19 @@ class AuthResource<T>(val status: AuthStatus, val data: T?, val message: String?
     }
 
     companion object {
-        fun <T> authenticated(data: T?): AuthResource<T?> {
+       open fun <T> authenticated(data: T): AuthResource<T> {
             return AuthResource(AuthStatus.AUTHENTICATED, data, null)
         }
 
-        fun <T> error(msg: String, data: T?): AuthResource<T?> {
-            return AuthResource(AuthStatus.ERROR, data, msg)
+        open fun <T> error(msg: String): AuthResource<T> {
+            return AuthResource(AuthStatus.ERROR, null, msg)
         }
 
-        fun <T> loading(data: T?): AuthResource<T?> {
-            return AuthResource(AuthStatus.LOADING, data, null)
+        open fun <T> loading(): AuthResource<T> {
+            return AuthResource(AuthStatus.LOADING, null, null)
         }
 
-        fun <T> logout(): AuthResource<T?> {
+        open fun <T> logout(): AuthResource<T> {
             return AuthResource(AuthStatus.NOT_AUTHENTICATED, null, null)
         }
     }
