@@ -87,10 +87,6 @@ class HomeDashboardFragment : BaseFragment() {
     }
 
 
-    fun callMemberList(memberList: List<Datum>) {
-        Log.e("", "")
-
-    }
 
 
 

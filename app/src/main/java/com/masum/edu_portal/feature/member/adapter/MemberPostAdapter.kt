@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.callback_listener.ItemClickListener
 import com.masum.edu_portal.databinding.ItemMemberPostBinding
-import com.masum.edu_portal.databinding.ItemNewsFeedBinding
 import com.masum.edu_portal.feature.home.data.posts.Datum
 
 class MemberPostAdapter constructor(val context: Context, val list: List<Datum>) :

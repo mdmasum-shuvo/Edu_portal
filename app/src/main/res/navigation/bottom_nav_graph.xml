@@ -25,22 +25,7 @@
         android:id="@+id/NotificationFragment"
         android:name="com.masum.edu_portal.feature.home.view.NotificationFragment"
         android:label="PaymentFragment" >
-        <action
-            android:id="@+id/action_PaymentFragment_to_AboutOcdFragment"
-            app:destination="@id/AboutOcdFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/AboutOcdFragment"
-        android:name="com.masum.edu_portal.feature.home.view.AboutOcdFragment"
-        android:label="AboutOcdFragment" >
 
-        <action
-            android:id="@+id/action_AboutOcdFragment_to_profileFragment"
-            app:destination="@id/profileFragment"
-            app:popEnterAnim="@anim/slide_left"
-            app:popExitAnim="@anim/slide_right"
-            app:enterAnim="@anim/slide_right"
-            app:exitAnim="@anim/slide_left" />
     </fragment>
 
 
@@ -53,11 +38,5 @@
             app:destination="@id/GalleryFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.masum.edu_portal.feature.member.view.ProfileFragment"
-        android:label="ProfileFragment"   app:popEnterAnim="@anim/slide_left"
-        app:popExitAnim="@anim/slide_right"
-        app:enterAnim="@anim/slide_right"
-        app:exitAnim="@anim/slide_left"/>
+
 </navigation>

@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import com.masum.edu_portal.BuildConfig
 import com.masum.edu_portal.common.Constant
 import com.masum.edu_portal.networks.ApiService
-import com.masum.edu_portal.networks.AuthApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

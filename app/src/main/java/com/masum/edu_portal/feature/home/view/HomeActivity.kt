@@ -25,7 +25,6 @@ import com.masum.edu_portal.BuildConfig
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
 import com.masum.edu_portal.databinding.ActivityHomeBinding
-import com.masum.edu_portal.feature.home.data.about.AboutU
 import com.masum.edu_portal.feature.member.data.memberinfolist.Datum
 import com.masum.edu_portal.feature.member.view.ProfileActivity
 import kotlinx.android.synthetic.main.activity_home.*
@@ -44,7 +43,6 @@ class HomeActivity : BaseActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var mActivity: Activity
     private var memberList = ArrayList<Datum>()
-    private var aboutUsLIst = ArrayList<AboutU>()
     override fun getLayoutResourceFile(): Int {
         return R.layout.activity_home
     }
@@ -77,18 +75,6 @@ class HomeActivity : BaseActivity() {
             startActivity(NotificationActivity::class.java,false,bundle)
 
         }
-    }
-
-    private fun callLiveDataListener() {
-
-
-    }
-
-    private fun clearList() {
-        if (!memberList.isEmpty())
-            memberList.clear()
-        if (!aboutUsLIst.isEmpty())
-            aboutUsLIst.clear()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -174,8 +160,7 @@ class HomeActivity : BaseActivity() {
                 R.id.HomeDashboardFragment,
                 R.id.postFragment,
                 R.id.GalleryFragment,
-                R.id.NotificationFragment,
-                R.id.AboutOcdFragment
+                R.id.NotificationFragment
             )
         )
         //setOf(R.id.HomeDashboardFragment,R.id.GalleryFragment,R.id.PaymentFragment,R.id.aboutOcdFragment,R.id.profileFragment)
@@ -243,12 +228,7 @@ class HomeActivity : BaseActivity() {
 
     override fun onInternetConnectivityChanged(isConnected: Boolean) {
 
-        if (isConnected) {
-            clearList()
-          //  callData();
-        } else {
 
-        }
     }
 
     override fun onRefresh() {

@@ -8,6 +8,11 @@ object HTTP_PARAM {
 
     //auth
     const val LOGIN="login"
+    const val AUTHORIZATION="Authorization"
+
+    //student
+    const val CLASS_MATE_LIST="classmatelist"
+
 
 
     const val ORGANISATION_ID="org_id"

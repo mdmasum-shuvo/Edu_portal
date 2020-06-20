@@ -12,7 +12,7 @@ open abstract class ActivityBindingModule {
     @ContributesAndroidInjector(modules = [AuthFragmentBindingModule::class])
     open abstract fun launcherActivityBinding(): LauncherActivity
 
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = [HomeFragmentBindingModule::class])
     open abstract fun homeActivity(): HomeActivity
 
 }

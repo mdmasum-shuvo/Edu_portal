@@ -30,12 +30,4 @@
         android:icon="@drawable/gallery"
         android:title="@string/bottom_nav_gallery"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/AboutOcdFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_about_us"
-        android:title="@string/bottom_nav_about_ocd"
-        app:showAsAction="ifRoom" />
-
 </menu>
