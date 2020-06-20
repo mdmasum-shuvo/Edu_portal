@@ -12,8 +12,10 @@ import com.masum.edu_portal.feature.home.data.class_mate.ClassMatePost
 import com.masum.edu_portal.feature.home.data.class_mate.ClassMateResponse
 import com.masum.edu_portal.feature.home.data.class_mate.Datum
 import com.masum.edu_portal.networks.ApiService
+import com.masum.edu_portal.networks.HTTP_PARAM
 import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class StudentViewModel @Inject constructor(
@@ -23,24 +25,21 @@ class StudentViewModel @Inject constructor(
     val classMateList: MediatorLiveData<DataResource<ClassMateResponse>> =
         MediatorLiveData<DataResource<ClassMateResponse>>()
 
-    val classmateData: MutableLiveData<List<Datum>> = MutableLiveData()
     var currentPage = 0
     private val gson = Gson()
 
     fun getClassMateData() {
         currentPage++
-        var classMate: ClassMatePost = ClassMatePost()
 
-        classMate.orgId = 1
-        classMate.classId = 40
-        classMate.groupId = 50
-        classMate.sectionId = 88
-        classMate.currentPage = 1
-        val jsonString: String = gson.toJson(classMate)
-        val jsonObject = JsonParser().parse(jsonString).asJsonObject
-        val source: LiveData<AuthResource<ClassMateResponse>> =
-            LiveDataReactiveStreams.fromPublisher {
-                apiService.classMateList(jsonObject,sessionManager.getAuthUser().value!!.data!!.accessToken)
+        val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
+        builder.addFormDataPart(HTTP_PARAM.CLASS_ID, "40")
+        builder.addFormDataPart(HTTP_PARAM.GROUP_ID, "50")
+        builder.addFormDataPart(HTTP_PARAM.SECTION_ID, "88")
+
+        val source: LiveData<DataResource<ClassMateResponse>> =
+            LiveDataReactiveStreams.fromPublisher (
+                apiService.classMateList(builder.build(),"Bearer "+sessionManager.getAuthUser().value!!.data!!.accessToken)
                     .onErrorReturn(object : Function<Throwable, ClassMateResponse> {
 
                         override fun apply(t: Throwable): ClassMateResponse {
@@ -49,17 +48,17 @@ class StudentViewModel @Inject constructor(
                             return user
                         }
                     })
-                    .map(Function<ClassMateResponse, DataResource<ClassMateResponse>> { user ->
-                        if (user == null) {
+                    .map(Function<ClassMateResponse, DataResource<ClassMateResponse>> { data ->
+                        if (data == null) {
                             DataResource.error("could not authenticate")
-                        } else DataResource.success(user)
+                        } else DataResource.success(data)
                     })
                     .subscribeOn(Schedulers.io())
-            }
+            )
 
         classMateList.addSource(
             source, Observer { data ->
-                classmateData.value = data.data!!.data!!.data
+                classMateList.value=data
             }
         )
     }

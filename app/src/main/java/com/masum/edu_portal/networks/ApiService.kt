@@ -22,7 +22,7 @@ interface ApiService {
     //class mate list
     @POST(HTTP_PARAM.CLASS_MATE_LIST)
      fun classMateList(
-        @Body requestBody: JsonObject,@Header(HTTP_PARAM.AUTHORIZATION) token: String?
+        @Body requestBody: RequestBody,@Header(HTTP_PARAM.AUTHORIZATION) token: String?
     ): Flowable<ClassMateResponse>
 
 

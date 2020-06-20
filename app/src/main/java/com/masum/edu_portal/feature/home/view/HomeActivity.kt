@@ -25,13 +25,11 @@ import com.masum.edu_portal.BuildConfig
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
 import com.masum.edu_portal.databinding.ActivityHomeBinding
-import com.masum.edu_portal.feature.member.data.memberinfolist.Datum
 import com.masum.edu_portal.feature.member.view.ProfileActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.colupsing_toolbar_layout.*
 import kotlinx.android.synthetic.main.content_home.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class HomeActivity : BaseActivity() {
     private val VERSION = "Version : " + BuildConfig.VERSION_NAME
@@ -42,7 +40,6 @@ class HomeActivity : BaseActivity() {
     private lateinit var navControllerNested: NavController
     private lateinit var binding: ActivityHomeBinding
     private lateinit var mActivity: Activity
-    private var memberList = ArrayList<Datum>()
     override fun getLayoutResourceFile(): Int {
         return R.layout.activity_home
     }

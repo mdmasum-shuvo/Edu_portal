@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.callback_listener.ItemClickListener
 import com.masum.edu_portal.databinding.ItemMemberBinding
 import com.masum.edu_portal.databinding.SeeAllViewBinding
-import com.masum.edu_portal.feature.member.data.memberinfolist.Datum
+import com.masum.edu_portal.feature.home.data.class_mate.Datum
 
-class MemberListAdapter constructor(val context: Context, val list: List<Datum>) :
+class ClassMateListAdapter constructor(val context: Context?, val list: List<Datum>?) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val SEE_ALL_VIEW_TYPE = 0
@@ -42,28 +41,30 @@ class MemberListAdapter constructor(val context: Context, val list: List<Datum>)
     }
 
     override fun getItemCount(): Int {
-        return list.size + 1
+        return list!!.size + 1
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (position) {
-            list.size -> {
-                if (holder is SeeAllViewHolder){
+            list!!.size -> {
+                if (holder is SeeAllViewHolder) {
                     holder.bindView()
-                    holder.binding.llSeeAllHolder.setOnClickListener(object :View.OnClickListener{
+                    holder.binding.llSeeAllHolder.setOnClickListener(object : View.OnClickListener {
                         override fun onClick(p0: View?) {
-                            listener.onClick(position,holder.binding.llSeeAllHolder)
+                            listener.onClick(position, holder.binding.llSeeAllHolder)
                         }
                     })
                 }
             }
             else -> {
-                if (holder is MemberListViewHolder){
+                if (holder is MemberListViewHolder) {
 
-                    holder.bindView(context, list.get(position))
-                    holder.binding.itemMember.setOnClickListener(object :View.OnClickListener{
+                    if (context != null) {
+                        holder.bindView(context, list.get(position))
+                    }
+                    holder.binding.itemMember.setOnClickListener(object : View.OnClickListener {
                         override fun onClick(p0: View?) {
-                            listener.onClick(position,holder.binding.itemMember)
+                            listener.onClick(position, holder.binding.itemMember)
 
                         }
                     })
@@ -73,7 +74,7 @@ class MemberListAdapter constructor(val context: Context, val list: List<Datum>)
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position == list.size) return SEE_ALL_VIEW_TYPE
+        if (position == list!!.size) return SEE_ALL_VIEW_TYPE
         return MEMBER_ITEM_VIEW_TYPE
     }
 
@@ -100,13 +101,13 @@ class MemberListAdapter constructor(val context: Context, val list: List<Datum>)
         }
 
         fun bindView(context: Context, member: Datum) {
-            binding.data = member
-            Glide.with(context)
-                .load(member.image)
-                .placeholder(R.drawable.ic_person)
-                .into(binding.memberImage)
+            /*     binding.data = member
+                 Glide.with(context)
+                     .load(member.)
+                     .placeholder(R.drawable.ic_person)
+                     .into(binding.memberImage)
 
-
+     */
 
 
         }

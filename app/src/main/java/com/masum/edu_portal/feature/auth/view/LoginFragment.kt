@@ -78,7 +78,7 @@ class LoginFragment : BaseFragment() {
                             Log.e("data", userAuthResource.message)
                         }
                         AuthResource.AuthStatus.AUTHENTICATED -> {
-                            //startActivity(Intent(activity, HomeActivity::class.java))
+                            startActivity(Intent(activity, HomeActivity::class.java))
                             Log.e("data", userAuthResource.data!!.accessToken)
                             hideProgressDialog()
                         }

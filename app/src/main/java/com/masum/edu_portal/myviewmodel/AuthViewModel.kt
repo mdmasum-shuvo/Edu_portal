@@ -30,7 +30,7 @@ class AuthViewModel @Inject constructor(
         builder.addFormDataPart(HTTP_PARAM.USER_NAME, "admin")
         builder.addFormDataPart(HTTP_PARAM.PASSWORD, "sislbd")
         builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
-        return LiveDataReactiveStreams.fromPublisher{
+        return LiveDataReactiveStreams.fromPublisher(
             authApi.authentication(builder.build())
                 .onErrorReturn(object : Function<Throwable, LoginResponse> {
 
@@ -47,7 +47,7 @@ class AuthViewModel @Inject constructor(
                     } else AuthResource.authenticated(user)
                 })
                 .subscribeOn(Schedulers.io())
-        }
+            )
 
 
     }

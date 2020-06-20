@@ -15,11 +15,7 @@ import com.masum.edu_portal.databinding.ItemHomeDashboardBinding
 import com.masum.edu_portal.databinding.SeeAllViewBinding
 import com.masum.edu_portal.feature.home.data.Dashboard
 
-class DashboardAdapter constructor(
-    private val context: Context?,
-    private val list: List<Dashboard>?
-
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DashboardAdapter constructor(private val context: Context?, private val list: List<Dashboard>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var layoutInflater: LayoutInflater? = null
     val REQUEST_UPDATE = 100
     private lateinit var listener: ItemClickListener

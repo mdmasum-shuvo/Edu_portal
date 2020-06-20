@@ -86,71 +86,71 @@ class Datum {
 
     @SerializedName("student_contact_no")
     @Expose
-    var studentContactNo: Any? = null
+    var studentContactNo: String? = null
 
     @SerializedName("student_email")
     @Expose
-    var studentEmail: Any? = null
+    var studentEmail: String? = null
 
     @SerializedName("father_name")
     @Expose
-    var fatherName: Any? = null
+    var fatherName: String? = null
 
     @SerializedName("father_occupation")
     @Expose
-    var fatherOccupation: Any? = null
+    var fatherOccupation: String? = null
 
     @SerializedName("father_income")
     @Expose
-    var fatherIncome: Any? = null
+    var fatherIncome: String? = null
 
     @SerializedName("father_contact_no")
     @Expose
-    var fatherContactNo: Any? = null
+    var fatherContactNo: String? = null
 
     @SerializedName("mother_name")
     @Expose
-    var motherName: Any? = null
+    var motherName: String? = null
 
     @SerializedName("mother_email")
     @Expose
-    var motherEmail: Any? = null
+    var motherEmail: String? = null
 
     @SerializedName("mother_occupation")
     @Expose
-    var motherOccupation: Any? = null
+    var motherOccupation: String? = null
 
     @SerializedName("mother_income")
     @Expose
-    var motherIncome: Any? = null
+    var motherIncome: String? = null
 
     @SerializedName("mother_contact_no")
     @Expose
-    var motherContactNo: Any? = null
+    var motherContactNo: String? = null
 
     @SerializedName("local_guardian")
     @Expose
-    var localGuardian: Any? = null
+    var localGuardian: String? = null
 
     @SerializedName("local_guardian_contact_no")
     @Expose
-    var localGuardianContactNo: Any? = null
+    var localGuardianContactNo: String? = null
 
     @SerializedName("relation_with_local_guardian")
     @Expose
-    var relationWithLocalGuardian: Any? = null
+    var relationWithLocalGuardian: String? = null
 
     @SerializedName("present_address")
     @Expose
-    var presentAddress: Any? = null
+    var presentAddress: String? = null
 
     @SerializedName("permanent_address")
     @Expose
-    var permanentAddress: Any? = null
+    var permanentAddress: String? = null
 
     @SerializedName("provided_device_info")
     @Expose
-    var providedDeviceInfo: Any? = null
+    var providedDeviceInfo: String? = null
 
     @SerializedName("user_id")
     @Expose
@@ -162,46 +162,46 @@ class Datum {
 
     @SerializedName("class_roll_no")
     @Expose
-    var classRollNo: Any? = null
+    var classRollNo: String? = null
 
     @SerializedName("rfid_number")
     @Expose
-    var rfidNumber: Any? = null
+    var rfidNumber: String? = null
 
     @SerializedName("member_id")
     @Expose
-    var memberId: Any? = null
+    var memberId: String? = null
 
     @SerializedName("unique_card_id")
     @Expose
-    var uniqueCardId: Any? = null
+    var uniqueCardId: String? = null
 
     @SerializedName("name")
     @Expose
-    var name: Any? = null
+    var name: String? = null
 
     @SerializedName("gender")
     @Expose
-    var gender: Any? = null
+    var gender: String? = null
 
     @SerializedName("email")
     @Expose
-    var email: Any? = null
+    var email: String? = null
 
     @SerializedName("contact_no")
     @Expose
-    var contactNo: Any? = null
+    var contactNo: String? = null
 
     @SerializedName("dob")
     @Expose
-    var dob: Any? = null
+    var dob: String? = null
 
     @SerializedName("education")
     @Expose
-    var education: Any? = null
+    var education: String? = null
 
     @SerializedName("designation")
     @Expose
-    var designation: Any? = null
+    var designation: String? = null
 
 }
