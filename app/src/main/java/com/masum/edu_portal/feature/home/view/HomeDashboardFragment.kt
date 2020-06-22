@@ -27,9 +27,11 @@ import com.masum.edu_portal.databinding.FragmentHomeDashboardBinding
 import com.masum.edu_portal.di.ViewModelProviderFactory
 import com.masum.edu_portal.feature.home.adapter.DashboardAdapter
 import com.masum.edu_portal.feature.home.data.DashboardList
+import com.masum.edu_portal.feature.home.data.class_mate.Datum
 import com.masum.edu_portal.feature.member.adapter.ClassMateListAdapter
 import com.masum.edu_portal.myviewmodel.StudentViewModel
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
+import java.util.*
 import javax.inject.Inject
 
 class HomeDashboardFragment : BaseFragment() {
@@ -39,6 +41,7 @@ class HomeDashboardFragment : BaseFragment() {
     private lateinit var classMateAdapter: ClassMateListAdapter
 
     private lateinit var viewmodel: StudentViewModel
+    private var classMateList= ArrayList<Datum>()
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
@@ -62,6 +65,7 @@ class HomeDashboardFragment : BaseFragment() {
         viewmodel =
             ViewModelProviders.of(this, viewModelProviderFactory).get(StudentViewModel::class.java)
         viewmodel.getClassMateData()
+        classMateAdapter = ClassMateListAdapter(mActivity,classMateList)
         setRecylerView()
         initListener()
         setAdapterListener()
@@ -107,16 +111,23 @@ class HomeDashboardFragment : BaseFragment() {
                     }
                     DataResource.DataStatus.ERROR -> {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            showErrorDialog("Failed!", dataResource.message)
                             hideLoader()
+
                         }
                     }
                     DataResource.DataStatus.SUCCESS -> {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             hideLoader()
                         }
-                        classMateAdapter =
-                            ClassMateListAdapter(mActivity, dataResource.data!!.data!!.data)
-                        binding.rvMemberList.adapter = classMateAdapter
+                        if (dataResource.data!!.data!!.data != null) {
+                            if (!classMateList.isEmpty()){
+                                classMateList.clear()
+                            }
+                            classMateList.addAll(dataResource.data!!.data!!.data!!)
+                            classMateAdapter.notifyDataSetChanged()
+                            binding.rvMemberList.adapter = classMateAdapter
+                        }
                     }
                 }
             }
@@ -145,6 +156,13 @@ class HomeDashboardFragment : BaseFragment() {
                             extras
                         )*/
 
+            }
+        })
+
+
+        classMateAdapter.setOnItemClickListener(object : ItemClickListener {
+            override fun onClick(position: Int, view: View?) {
+                toast("item" + position)
             }
         })
 

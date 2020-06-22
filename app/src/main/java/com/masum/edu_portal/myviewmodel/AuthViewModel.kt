@@ -20,16 +20,16 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    fun authentication(userName: String, password: String) {
-        sessionManager.authenticationUser(queryLogin(userName, password))
+    fun authentication(userName: String, password: String,orgId:Int) {
+        sessionManager.authenticationUser(queryLogin(userName, password,orgId))
     }
 
 
-    private fun queryLogin(userName: String, password: String): LiveData<AuthResource<LoginResponse>> {
+    private fun queryLogin(userName: String, password: String,orgId:Int): LiveData<AuthResource<LoginResponse>> {
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-        builder.addFormDataPart(HTTP_PARAM.USER_NAME, "admin")
-        builder.addFormDataPart(HTTP_PARAM.PASSWORD, "sislbd")
-        builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
+        builder.addFormDataPart(HTTP_PARAM.USER_NAME, userName)
+        builder.addFormDataPart(HTTP_PARAM.PASSWORD, password)
+        builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, orgId.toString())
         return LiveDataReactiveStreams.fromPublisher(
             authApi.authentication(builder.build())
                 .onErrorReturn(object : Function<Throwable, LoginResponse> {

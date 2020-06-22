@@ -1,6 +1,7 @@
 package com.masum.edu_portal.feature.member.view
 
 import android.os.Build
+import android.view.View
 import androidx.annotation.RequiresApi
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
@@ -33,5 +34,8 @@ class ProfileActivity : BaseActivity() {
     }
 
 
+    fun upArrowClicked(view: View) {
+        onBackPressed()
+    }
 
 }

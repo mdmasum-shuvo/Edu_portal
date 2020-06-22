@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseFragment
 import com.masum.edu_portal.databinding.FragmentLoginBinding
@@ -18,7 +19,10 @@ import com.masum.edu_portal.di.ViewModelProviderFactory
 import com.masum.edu_portal.feature.auth.datamodel.AuthResource
 import com.masum.edu_portal.feature.auth.datamodel.LoginResponse
 import com.masum.edu_portal.feature.home.view.HomeActivity
+import com.masum.edu_portal.globaldata.organization.Datum
 import com.masum.edu_portal.myviewmodel.AuthViewModel
+import com.masum.edu_portal.myviewmodel.GlobalViewModel
+import jrizani.jrspinner.JRSpinner
 import javax.inject.Inject
 
 
@@ -26,6 +30,10 @@ class LoginFragment : BaseFragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private lateinit var viewmodel: AuthViewModel
+    private var organizationId:Int=-1
+
+    @Inject
+    lateinit var globalViewModel: GlobalViewModel
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
@@ -55,14 +63,71 @@ class LoginFragment : BaseFragment() {
             ViewModelProviders.of(this, viewModelProviderFactory).get(AuthViewModel::class.java)
 
         binding.btnLogin.setOnClickListener({
-            viewmodel.authentication(
-                binding.etUserName.text.toString(),
-                binding.etPassword.text.toString()
-            )
+            if(isValid()){
+                viewmodel.authentication(
+                    binding.etUserName.text.toString(),
+                    binding.etPassword.text.toString(),organizationId
+                )
+            }
+
         })
 
         subcribeAuthentcationObserver()
+        observeOrganizationData()
+
     }
+
+    fun isValid():Boolean{
+        if ( binding.etUserName.text.toString().equals("") || binding.etPassword.text.toString().equals("")){
+            return false
+        }
+        else if(organizationId==-1){
+            showAlertDialog("Error","Please select your institute")
+        }
+        return true
+
+    }
+
+
+
+    private fun observeOrganizationData() {
+        globalViewModel.organization.observe(this, Observer { dataSource ->
+            if (dataSource != null) {
+                when (dataSource.status) {
+                    DataResource.DataStatus.LOADING -> {
+                        showProgressDialog()
+                    }
+                    DataResource.DataStatus.ERROR -> {
+                        hideProgressDialog()
+                    }
+                    DataResource.DataStatus.SUCCESS -> {
+                        hideProgressDialog()
+                        addOrganizationToSpinner(dataSource.data!!.data)
+                    }
+                }
+            }
+        })
+    }
+
+    private fun addOrganizationToSpinner(data: List<Datum>?) {
+
+        var orgList = arrayOfNulls<String>(data!!.size)
+        var orgIdIdList = arrayOfNulls<Int>(data!!.size)
+        for (i in 0 until data!!.size) {
+            try {
+                orgList[i] = data!![i].orgName
+                orgIdIdList[i] = data!![i].orgId!!
+            } catch (e: Exception) {
+            }
+        }
+
+        binding.spnOrg.setMultiple(false)
+        binding.spnOrg.setItems(orgList)
+        binding.spnOrg.setOnItemClickListener(JRSpinner.OnItemClickListener { position ->
+            organizationId = data[position].orgId!!
+        })
+    }
+
 
     private fun subcribeAuthentcationObserver() {
         viewmodel.observeLogin()

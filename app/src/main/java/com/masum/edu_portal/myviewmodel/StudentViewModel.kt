@@ -38,27 +38,29 @@ class StudentViewModel @Inject constructor(
         builder.addFormDataPart(HTTP_PARAM.SECTION_ID, "88")
 
         val source: LiveData<DataResource<ClassMateResponse>> =
-            LiveDataReactiveStreams.fromPublisher (
-                apiService.classMateList(builder.build(),"Bearer "+sessionManager.getAuthUser().value!!.data!!.accessToken)
-                    .onErrorReturn(object : Function<Throwable, ClassMateResponse> {
-
-                        override fun apply(t: Throwable): ClassMateResponse {
-                            val user = ClassMateResponse()
-
-                            return user
-                        }
-                    })
+            LiveDataReactiveStreams.fromPublisher(
+                apiService.classMateList(
+                    builder.build(),
+                    "Bearer " + sessionManager.getAuthUser().value!!.data!!.accessToken
+                )
+                    .onErrorReturn {
+                        val user = ClassMateResponse()
+                        user.data=null
+                        user
+                    }
                     .map(Function<ClassMateResponse, DataResource<ClassMateResponse>> { data ->
-                        if (data == null) {
-                            DataResource.error("could not authenticate")
-                        } else DataResource.success(data)
+                        if (data.data==null) {
+                            DataResource.error("Something went wrong")
+                        } else {
+                            DataResource.success(data)
+                        }
                     })
                     .subscribeOn(Schedulers.io())
             )
 
         classMateList.addSource(
             source, Observer { data ->
-                classMateList.value=data
+                classMateList.value = data
             }
         )
     }
