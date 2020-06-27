@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.di.SessionManager
-import com.masum.edu_portal.feature.home.data.class_mate.ClassMateResponse
+import com.masum.edu_portal.feature.exam.data.ExamListResponse
 import com.masum.edu_portal.networks.ApiService
 import com.masum.edu_portal.networks.HTTP_PARAM
 import io.reactivex.functions.Function
@@ -12,37 +12,38 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
 import javax.inject.Inject
 
-class StudentViewModel @Inject constructor(
+class ExamViewModel @Inject constructor(
     val apiService: ApiService,
     val sessionManager: SessionManager
-) : ViewModel() {
-    val classMateList: MediatorLiveData<DataResource<ClassMateResponse>> =
-        MediatorLiveData<DataResource<ClassMateResponse>>()
+) :ViewModel(){
+
+
+    val examList: MediatorLiveData<DataResource<ExamListResponse>> =
+        MediatorLiveData<DataResource<ExamListResponse>>()
 
     var currentPage = 0
     private val gson = Gson()
 
-    fun getClassMateData() {
+    fun getUpComingExamData() {
         currentPage++
 
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
-        builder.addFormDataPart(HTTP_PARAM.CLASS_ID, "40")
-        builder.addFormDataPart(HTTP_PARAM.GROUP_ID, "50")
-        builder.addFormDataPart(HTTP_PARAM.SECTION_ID, "88")
+        builder.addFormDataPart(HTTP_PARAM.SUBJECT_ID, "1")
+        builder.addFormDataPart(HTTP_PARAM.STUDENT_ID, "1")
 
-        val source: LiveData<DataResource<ClassMateResponse>> =
+        val source: LiveData<DataResource<ExamListResponse>> =
             LiveDataReactiveStreams.fromPublisher(
-                apiService.classMateList(
+                apiService.upComingExamList(
                     builder.build(),
                     "Bearer " + sessionManager.getAuthUser().value!!.data!!.accessToken
                 )
                     .onErrorReturn {
-                        val user = ClassMateResponse()
+                        val user = ExamListResponse()
                         user.data=null
                         user
                     }
-                    .map(Function<ClassMateResponse, DataResource<ClassMateResponse>> { data ->
+                    .map(Function<ExamListResponse, DataResource<ExamListResponse>> { data ->
                         if (data.data==null) {
                             DataResource.error("Something went wrong")
                         } else {
@@ -52,9 +53,9 @@ class StudentViewModel @Inject constructor(
                     .subscribeOn(Schedulers.io())
             )
 
-        classMateList.addSource(
+        examList.addSource(
             source, Observer { data ->
-                classMateList.value = data
+                examList.value = data
             }
         )
     }

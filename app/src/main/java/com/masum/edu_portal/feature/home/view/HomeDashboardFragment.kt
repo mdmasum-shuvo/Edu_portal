@@ -25,11 +25,14 @@ import com.masum.edu_portal.common.BaseFragment
 import com.masum.edu_portal.common.callback_listener.ItemClickListener
 import com.masum.edu_portal.databinding.FragmentHomeDashboardBinding
 import com.masum.edu_portal.di.ViewModelProviderFactory
+import com.masum.edu_portal.feature.exam.adapter.ExamAdapter
 import com.masum.edu_portal.feature.home.adapter.DashboardAdapter
 import com.masum.edu_portal.feature.home.data.DashboardList
 import com.masum.edu_portal.feature.home.data.class_mate.Datum
 import com.masum.edu_portal.feature.member.adapter.ClassMateListAdapter
+import com.masum.edu_portal.myviewmodel.ExamViewModel
 import com.masum.edu_portal.myviewmodel.StudentViewModel
+import com.masum.edu_portal.utils.MyDividerItemDecoration
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 import java.util.*
 import javax.inject.Inject
@@ -39,9 +42,12 @@ class HomeDashboardFragment : BaseFragment() {
     lateinit var binding: FragmentHomeDashboardBinding
     private lateinit var dashAdapter: DashboardAdapter
     private lateinit var classMateAdapter: ClassMateListAdapter
+    private lateinit var examAdapter: ExamAdapter
 
     private lateinit var viewmodel: StudentViewModel
-    private var classMateList= ArrayList<Datum>()
+    private lateinit var examViewModel: ExamViewModel
+    private var classMateList = ArrayList<Datum>()
+    private var examList = ArrayList<com.masum.edu_portal.feature.exam.data.Datum>()
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
@@ -64,14 +70,19 @@ class HomeDashboardFragment : BaseFragment() {
 
         viewmodel =
             ViewModelProviders.of(this, viewModelProviderFactory).get(StudentViewModel::class.java)
-        viewmodel.getClassMateData()
-        classMateAdapter = ClassMateListAdapter(mActivity,classMateList)
+        examViewModel =
+            ViewModelProviders.of(this, viewModelProviderFactory).get(ExamViewModel::class.java)
+        callNetworkData()
         setRecylerView()
         initListener()
         setAdapterListener()
         functionality()
-        observeClassMateData()
 
+    }
+
+    private fun callNetworkData() {
+        viewmodel.getClassMateData()
+        examViewModel.getUpComingExamData()
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -84,6 +95,26 @@ class HomeDashboardFragment : BaseFragment() {
             , false
         )
         binding.rvMemberList.layoutManager = layoutManagerH
+        classMateAdapter = ClassMateListAdapter(mActivity, classMateList)
+
+        binding.rvnewsFeed.setHasFixedSize(true)
+        val layoutManagerV = LinearLayoutManager(
+            mActivity
+            , LinearLayoutManager.VERTICAL
+            , false
+        )
+        binding.rvnewsFeed.layoutManager = layoutManagerV
+        binding.rvnewsFeed.addItemDecoration(
+            MyDividerItemDecoration(
+                activity!!,
+                LinearLayoutManager.VERTICAL,
+                16
+            )
+        )
+
+        examAdapter = ExamAdapter(mActivity, examList)
+        binding.rvnewsFeed.adapter = examAdapter
+
 
         val gridLayout = GridLayoutManager(mActivity, 3)
 
@@ -96,7 +127,45 @@ class HomeDashboardFragment : BaseFragment() {
     }
 
     private fun functionality() {
+        observeClassMateData()
+        observeExamData()
 
+    }
+
+    private fun observeExamData() {
+        examViewModel.examList.observe(this, Observer { dataResource ->
+            if (dataResource != null) {
+                when (dataResource.status) {
+                    DataResource.DataStatus.LOADING -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            showLoader()
+                        }
+                    }
+                    DataResource.DataStatus.ERROR -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            showErrorDialog("Failed!", dataResource.message)
+                            hideLoader()
+                            binding.tvFeed.visibility=View.GONE
+
+                        }
+                    }
+                    DataResource.DataStatus.SUCCESS -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            hideLoader()
+                        }
+                        if (dataResource.data!!.data != null) {
+                            if (!examList.isEmpty()) {
+                                examList.clear()
+                            }
+                            binding.tvFeed.visibility=View.VISIBLE
+
+                            examList.addAll(dataResource.data!!.data!!)
+                            examAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+            }
+        })
     }
 
 
@@ -113,6 +182,8 @@ class HomeDashboardFragment : BaseFragment() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             showErrorDialog("Failed!", dataResource.message)
                             hideLoader()
+                            binding.tvClassMate.visibility=View.GONE
+
 
                         }
                     }
@@ -121,9 +192,10 @@ class HomeDashboardFragment : BaseFragment() {
                             hideLoader()
                         }
                         if (dataResource.data!!.data!!.data != null) {
-                            if (!classMateList.isEmpty()){
+                            if (!classMateList.isEmpty()) {
                                 classMateList.clear()
                             }
+                            binding.tvClassMate.visibility=View.VISIBLE
                             classMateList.addAll(dataResource.data!!.data!!.data!!)
                             classMateAdapter.notifyDataSetChanged()
                             binding.rvMemberList.adapter = classMateAdapter

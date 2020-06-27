@@ -17,7 +17,6 @@ import com.masum.edu_portal.feature.home.data.Dashboard
 
 class DashboardAdapter constructor(private val context: Context?, private val list: List<Dashboard>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var layoutInflater: LayoutInflater? = null
-    val REQUEST_UPDATE = 100
     private lateinit var listener: ItemClickListener
 
 
@@ -49,22 +48,7 @@ class DashboardAdapter constructor(private val context: Context?, private val li
                 }
     }
 
-    internal class SeeAllViewHolder(itemBinding: SeeAllViewBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
-        fun bindView() {
-            val linearLayout =
-                itemView.findViewById<LinearLayout>(R.id.ll_see_all_holder)
-            linearLayout.gravity = Gravity.TOP
-            val image =
-                itemView.findViewById<ImageView>(R.id.iv_image_see_all)
-            image.setImageResource(R.drawable.ic_see_all_speciality)
-            val textView = itemView.findViewById<TextView>(R.id.tv_text_see_all)
-            textView.text = itemView
-                .context
-                .resources
-                .getString(R.string.seeAll)
-        }
-    }
+
 
 
     override fun getItemCount(): Int {

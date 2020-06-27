@@ -24,11 +24,12 @@ class GlobalViewModel @Inject constructor(var apiService: ApiService) :ViewModel
             Function<Throwable, OrgListResponse> {
                override fun apply(t: Throwable): OrgListResponse {
                    val user = OrgListResponse()
+                   user.data=null
                    return user
                }
            })
                .map(Function<OrgListResponse, DataResource<OrgListResponse>> { data ->
-                   if (data == null) {
+                   if (data.data == null) {
                        DataResource.error("Something went wrong")
                    } else DataResource.success(data)
                })
