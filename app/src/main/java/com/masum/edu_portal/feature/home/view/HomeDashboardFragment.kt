@@ -8,6 +8,7 @@
 
 package com.masum.edu_portal.feature.home.view
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,6 +31,8 @@ import com.masum.edu_portal.feature.home.adapter.DashboardAdapter
 import com.masum.edu_portal.feature.home.data.DashboardList
 import com.masum.edu_portal.feature.home.data.class_mate.Datum
 import com.masum.edu_portal.feature.member.adapter.ClassMateListAdapter
+import com.masum.edu_portal.feature.member.view.ProfileActivity
+import com.masum.edu_portal.feature.myclass.view.MyClassActivity
 import com.masum.edu_portal.myviewmodel.ExamViewModel
 import com.masum.edu_portal.myviewmodel.StudentViewModel
 import com.masum.edu_portal.utils.MyDividerItemDecoration
@@ -129,7 +132,6 @@ class HomeDashboardFragment : BaseFragment() {
     private fun functionality() {
         observeClassMateData()
         observeExamData()
-
     }
 
     private fun observeExamData() {
@@ -146,9 +148,9 @@ class HomeDashboardFragment : BaseFragment() {
                             showErrorDialog("Failed!", dataResource.message)
                             hideLoader()
                             binding.tvFeed.visibility=View.GONE
-
                         }
                     }
+
                     DataResource.DataStatus.SUCCESS -> {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             hideLoader()
@@ -158,7 +160,6 @@ class HomeDashboardFragment : BaseFragment() {
                                 examList.clear()
                             }
                             binding.tvFeed.visibility=View.VISIBLE
-
                             examList.addAll(dataResource.data!!.data!!)
                             examAdapter.notifyDataSetChanged()
                         }
@@ -183,8 +184,6 @@ class HomeDashboardFragment : BaseFragment() {
                             showErrorDialog("Failed!", dataResource.message)
                             hideLoader()
                             binding.tvClassMate.visibility=View.GONE
-
-
                         }
                     }
                     DataResource.DataStatus.SUCCESS -> {
@@ -227,6 +226,11 @@ class HomeDashboardFragment : BaseFragment() {
                             null, // NavOptions
                             extras
                         )*/
+                when(position){
+                    0->{
+                        startActivity(Intent(activity,MyClassActivity::class.java))
+                    }
+                }
 
             }
         })

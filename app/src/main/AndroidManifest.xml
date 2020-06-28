@@ -3,7 +3,7 @@
     package="com.masum.edu_portal">
 
     <application
-        android:name="com.masum.edu_portal.common.MyApplication"
+        android:name=".common.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -11,19 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.masum.edu_portal.feature.home.view.NotificationActivity"></activity>
-        <activity android:name="com.masum.edu_portal.feature.home.view.UploadPostActivity" />
-        <activity android:name="com.masum.edu_portal.feature.launch.view.LauncherActivity" >
+        <activity android:name=".feature.myclass.view.MyClassActivity"></activity>
+        <activity android:name=".feature.home.view.NotificationActivity" />
+        <activity android:name=".feature.home.view.UploadPostActivity" />
+        <activity android:name=".feature.launch.view.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.masum.edu_portal.feature.member.view.ProfileActivity" />
-        <activity android:name="com.masum.edu_portal.feature.home.view.HomeActivity">
-
-        </activity>
+        <activity android:name=".feature.member.view.ProfileActivity" />
+        <activity android:name=".feature.home.view.HomeActivity"></activity>
     </application>
 
 </manifest>

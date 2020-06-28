@@ -68,9 +68,7 @@
     <string name="allDoctors">All Doctors</string>
     <string name="noInterNet">No internet!</string>
 
-    <!-- Doctor Profile -->
-    <string name="bookAppointment">Book Appointment</string>
-    <string name="level">Level</string>
+    <!--  -->
     <string name="gender">Gender</string>
     <string name="education">Education</string>
     <string name="chambers_header">Chambers</string>
@@ -85,7 +83,7 @@
     <string name="loading">Loading...</string>
     <string name="about_edu">About App</string>
     <string name="ocd_member">Ocd Member</string>
-    <string name="see_all_member">See All Member</string>
+    <string name="see_all_member">See All Classmate</string>
     <string name="seeAll">See All</string>
     <string name="bottom_nav_post">News feed</string>
     <string name="update_available">update available</string>

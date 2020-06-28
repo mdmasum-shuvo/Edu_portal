@@ -1,5 +1,6 @@
 package com.masum.edu_portal.common
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.DialogInterface
@@ -32,7 +33,7 @@ open abstract class BaseActivity : DaggerAppCompatActivity(), InternetConnectivi
     private var binding: ViewDataBinding? = null
     private var progressDialog: ProgressDialog? = null
     private var mToolbar: Toolbar? = null
-    private var mInternetAvailabilityChecker: InternetAvailabilityChecker? = null
+    var mInternetAvailabilityChecker: InternetAvailabilityChecker? = null
     var mySharedPreferences: MySharedPreferences? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,7 +85,21 @@ open abstract class BaseActivity : DaggerAppCompatActivity(), InternetConnectivi
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
     }
-
+    open fun showErrorDialog(title: String?, message: String?) {
+        val builder: androidx.appcompat.app.AlertDialog.Builder
+        builder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            androidx.appcompat.app.AlertDialog.Builder(this, R.style.DialogTheme)
+        } else {
+            androidx.appcompat.app.AlertDialog.Builder(this)
+        }
+        builder.setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(
+                android.R.string.ok
+            ) { dialog, which -> dialog.dismiss() }
+            .setIcon(R.drawable.sync)
+            .show()
+    }
     open fun hideEmptyView() {
         noDataView.setVisibility(View.GONE)
     }
