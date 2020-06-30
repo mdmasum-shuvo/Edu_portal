@@ -1,10 +1,11 @@
 package com.masum.edu_portal.myviewmodel
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.di.SessionManager
-import com.masum.edu_portal.feature.myclass.data.ClassListResponse
+import com.masum.edu_portal.feature.member.data.profile.attendance.AttendanceResponse
 import com.masum.edu_portal.networks.ApiService
 import com.masum.edu_portal.networks.HTTP_PARAM
 import io.reactivex.functions.Function
@@ -12,38 +13,39 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
 import javax.inject.Inject
 
-class ClassViewModel  @Inject constructor(
+class ProfileViewModel @Inject constructor(
     val apiService: ApiService,
     val sessionManager: SessionManager
-) : ViewModel(){
+) : ViewModel() {
 
-
-    val classMateList: MediatorLiveData<DataResource<ClassListResponse>> =
-        MediatorLiveData<DataResource<ClassListResponse>>()
+    val attendanceHistoryData: MediatorLiveData<DataResource<AttendanceResponse>> =
+        MediatorLiveData<DataResource<AttendanceResponse>>()
 
     var currentPage = 0
     private val gson = Gson()
 
-    fun getUpComingClassData() {
+    fun getAttendanceHistory() {
         currentPage++
 
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
-        builder.addFormDataPart(HTTP_PARAM.STUDENT_ID, "1")
-        classMateList.value = DataResource.loading()
-        val source: LiveData<DataResource<ClassListResponse>> =
+        builder.addFormDataPart(HTTP_PARAM.START_DATE, "2020-06-22")
+        builder.addFormDataPart(HTTP_PARAM.END_DATE, "2020-06-28")
+
+        attendanceHistoryData.value = DataResource.loading()
+        val source: LiveData<DataResource<AttendanceResponse>> =
             LiveDataReactiveStreams.fromPublisher(
-                apiService.upComingClassList(
+                apiService.attendanceHistory(
                     builder.build(),
                     "Bearer " + sessionManager.getAuthUser().value!!.data!!.accessToken
                 )
                     .onErrorReturn {
-                        val user = ClassListResponse()
-                        user.data=null
+                        val user = AttendanceResponse()
+                        user.data = null
                         user
                     }
-                    .map(Function<ClassListResponse, DataResource<ClassListResponse>> { data ->
-                        if (data.data==null) {
+                    .map(Function<AttendanceResponse, DataResource<AttendanceResponse>> { data ->
+                        if (data.data == null) {
                             DataResource.error("Something went wrong")
                         } else {
                             DataResource.success(data)
@@ -52,9 +54,9 @@ class ClassViewModel  @Inject constructor(
                     .subscribeOn(Schedulers.io())
             )
 
-        classMateList.addSource(
+        attendanceHistoryData.addSource(
             source, Observer { data ->
-                classMateList.value = data
+                attendanceHistoryData.value = data
             }
         )
     }

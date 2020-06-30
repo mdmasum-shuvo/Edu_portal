@@ -1,7 +1,6 @@
 package com.masum.edu_portal.feature.myclass.view
 
 import android.os.Build
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,10 +8,7 @@ import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
 import com.masum.edu_portal.databinding.ActivityMyClassBinding
-import com.masum.edu_portal.databinding.FragmentHomeDashboardBinding
 import com.masum.edu_portal.di.ViewModelProviderFactory
-import com.masum.edu_portal.feature.exam.adapter.ExamAdapter
-import com.masum.edu_portal.feature.member.adapter.ClassMateListAdapter
 import com.masum.edu_portal.feature.myclass.adapter.TodaysClassAdapter
 import com.masum.edu_portal.feature.myclass.data.Datum
 import com.masum.edu_portal.myviewmodel.ClassViewModel

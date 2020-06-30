@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.masum.edu_portal.feature.home.data.class_mate.Datum" />
+            type="com.masum.edu_portal.feature.auth.datamodel.UserInfo" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -146,7 +146,7 @@
                                 android:background="@drawable/border_round"
                                 android:gravity="left"
                                 android:padding="3dp"
-                                android:text="@{data.studentName}"
+                                android:text="@{data.username}"
                                 android:textColor="@color/text_color"
                                 android:textSize="15sp"
                                 tools:text="Masum Talukder" />
@@ -180,7 +180,7 @@
                                 android:background="@drawable/border_round"
                                 android:gravity="left"
                                 android:padding="3dp"
-                                android:text="@{data.studentEmail}"
+                                android:text="@{data.email}"
                                 android:textColor="#050000"
                                 android:textSize="15sp"
                                 tools:text="masum@gmail.com" />
@@ -214,7 +214,7 @@
                                 android:background="@drawable/border_round"
                                 android:gravity="left"
                                 android:padding="3dp"
-                                android:text="@{data.studentContactNo}"
+                                android:text="@{data.phone}"
 
                                 android:textColor="#050000"
                                 android:textSize="15sp"
@@ -249,7 +249,6 @@
                                 android:background="@drawable/border_round"
                                 android:gravity="left"
                                 android:padding="3dp"
-                                android:text="@{data.campusName}"
                                 android:textColor="#050000"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -281,7 +280,6 @@
                                 android:background="@drawable/border_round"
                                 android:gravity="left"
                                 android:padding="3dp"
-                                android:text="@{data.className}"
                                 android:textColor="#050000"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -314,7 +312,6 @@
                                 android:background="@drawable/border_round"
                                 android:gravity="left"
                                 android:padding="3dp"
-                                android:text="@{data.groupName}"
                                 android:textColor="#050000"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -347,7 +344,6 @@
                                 android:background="@drawable/border_round"
                                 android:gravity="left"
                                 android:padding="3dp"
-                                android:text="@{data.dob}"
                                 android:textColor="@color/text_color"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -381,7 +377,6 @@
                                 android:background="@drawable/border_round"
                                 android:gravity="left"
                                 android:padding="3dp"
-                                android:text="@{data.mediumName}"
                                 android:textColor="#050000"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -391,8 +386,23 @@
 
                 </androidx.cardview.widget.CardView>
 
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:padding="@dimen/_2sdp"
+                    android:text="My Attendance History"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
+
 
 
         </androidx.core.widget.NestedScrollView>

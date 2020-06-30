@@ -25,6 +25,7 @@ import com.masum.edu_portal.BuildConfig
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
 import com.masum.edu_portal.databinding.ActivityHomeBinding
+import com.masum.edu_portal.feature.member.view.MyProfileActivity
 import com.masum.edu_portal.feature.member.view.ProfileActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.colupsing_toolbar_layout.*
@@ -102,7 +103,7 @@ class HomeActivity : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun launchMyProfile() {
         val bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
-        val profileIntent = Intent(this, ProfileActivity::class.java)
+        val profileIntent = Intent(this, MyProfileActivity::class.java)
         //findNavController(R.id.fragNavHost).navigate(R.id.memberDetailFragment)
         startActivity(profileIntent, bundle)
     }

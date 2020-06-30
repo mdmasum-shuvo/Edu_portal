@@ -30,6 +30,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:clickable="true"
                 android:focusable="true"
+                android:visibility="gone"
                 android:foreground="@drawable/ripple_dark">
 
                 <ImageView

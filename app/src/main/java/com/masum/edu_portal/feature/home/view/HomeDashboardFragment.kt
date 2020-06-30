@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseFragment
+import com.masum.edu_portal.common.Constant
 import com.masum.edu_portal.common.callback_listener.ItemClickListener
 import com.masum.edu_portal.databinding.FragmentHomeDashboardBinding
 import com.masum.edu_portal.di.ViewModelProviderFactory
@@ -147,7 +148,7 @@ class HomeDashboardFragment : BaseFragment() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             showErrorDialog("Failed!", dataResource.message)
                             hideLoader()
-                            binding.tvFeed.visibility=View.GONE
+                            binding.tvFeed.visibility = View.GONE
                         }
                     }
 
@@ -159,7 +160,7 @@ class HomeDashboardFragment : BaseFragment() {
                             if (!examList.isEmpty()) {
                                 examList.clear()
                             }
-                            binding.tvFeed.visibility=View.VISIBLE
+                            binding.tvFeed.visibility = View.VISIBLE
                             examList.addAll(dataResource.data!!.data!!)
                             examAdapter.notifyDataSetChanged()
                         }
@@ -183,7 +184,7 @@ class HomeDashboardFragment : BaseFragment() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             showErrorDialog("Failed!", dataResource.message)
                             hideLoader()
-                            binding.tvClassMate.visibility=View.GONE
+                            binding.tvClassMate.visibility = View.GONE
                         }
                     }
                     DataResource.DataStatus.SUCCESS -> {
@@ -194,7 +195,7 @@ class HomeDashboardFragment : BaseFragment() {
                             if (!classMateList.isEmpty()) {
                                 classMateList.clear()
                             }
-                            binding.tvClassMate.visibility=View.VISIBLE
+                            binding.tvClassMate.visibility = View.VISIBLE
                             classMateList.addAll(dataResource.data!!.data!!.data!!)
                             classMateAdapter.notifyDataSetChanged()
                             binding.rvMemberList.adapter = classMateAdapter
@@ -226,9 +227,9 @@ class HomeDashboardFragment : BaseFragment() {
                             null, // NavOptions
                             extras
                         )*/
-                when(position){
-                    0->{
-                        startActivity(Intent(activity,MyClassActivity::class.java))
+                when (position) {
+                    0 -> {
+                        startActivity(Intent(activity, MyClassActivity::class.java))
                     }
                 }
 
@@ -238,10 +239,23 @@ class HomeDashboardFragment : BaseFragment() {
 
         classMateAdapter.setOnItemClickListener(object : ItemClickListener {
             override fun onClick(position: Int, view: View?) {
-                toast("item" + position)
+                //toast("item" + position)
+                var bundle = Bundle()
+                bundle.putSerializable(Constant.INTENT_KEY, classMateList.get(position))
+                var intent = Intent(activity, ProfileActivity::class.java)
+                intent.putExtras(bundle)
+                startActivity(intent)
             }
         })
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onInternetConnectivityChanged(isConnected: Boolean) {
+        super.onInternetConnectivityChanged(isConnected)
+        if (isConnected) {
+            callNetworkData()
+        }
     }
 
     override fun onStop() {

@@ -206,6 +206,8 @@ open abstract class BaseFragment : DaggerFragment(), InternetConnectivityListene
         mTimePicker!!.show()
     }
 
+
+
     open fun showErrorDialog(title: String?, message: String?) {
         val builder: AlertDialog.Builder
         builder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

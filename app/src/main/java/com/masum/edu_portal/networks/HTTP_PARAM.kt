@@ -11,6 +11,8 @@ object HTTP_PARAM {
     const val ORGANIZATION_LIST="organizationlist"
     const val EXAM_LIST="upcommingexamlist"
     const val CLASS_LIST="upcommingclasslist"
+    const val EXAM_HISTORY="examhistory"
+    const val ATTENDANCE_HISTORY="attendancehistory"
 
 
 
@@ -24,6 +26,9 @@ object HTTP_PARAM {
     const val STUDENT_ID="student_id"
     const val EXAM_TYPE="exam_type"
     const val SUBJECT_ID="subject_id"
+
+    const val START_DATE="start_date"
+    const val END_DATE="end_date"
 
 
     const val CURRENT_PAGE="current_page"

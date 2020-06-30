@@ -8,6 +8,10 @@ class Datum {
     @Expose
     var id: Int? = null
 
+    @SerializedName("class_type")
+    @Expose
+    var classType: String? = null
+
     @SerializedName("section_id")
     @Expose
     var sectionId: Int? = null
@@ -27,6 +31,14 @@ class Datum {
     @SerializedName("day")
     @Expose
     var day: Int? = null
+
+    @SerializedName("zoom_user")
+    @Expose
+    var zoomUser: String? = null
+
+    @SerializedName("zoom_pass")
+    @Expose
+    var zoomPass: String? = null
 
     @SerializedName("created_at")
     @Expose
@@ -79,5 +91,17 @@ class Datum {
     @SerializedName("event")
     @Expose
     var event: String? = null
+
+    @SerializedName("period_name")
+    @Expose
+    var periodName: String? = null
+
+    @SerializedName("start_at")
+    @Expose
+    var startAt: String? = null
+
+    @SerializedName("ends_at")
+    @Expose
+    var endsAt: String? = null
 
 }

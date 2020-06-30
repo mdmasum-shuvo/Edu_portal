@@ -5,7 +5,9 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
+import com.masum.edu_portal.common.Constant
 import com.masum.edu_portal.databinding.ActivityProfileBinding
+import com.masum.edu_portal.feature.home.data.class_mate.Datum
 
 class ProfileActivity : BaseActivity() {
 
@@ -24,6 +26,9 @@ class ProfileActivity : BaseActivity() {
     }
 
     override fun initFunctionality() {
+        var bundle=intent.extras
+        var studentData=bundle!!.getSerializable(Constant.INTENT_KEY) as Datum
+        binding.data= studentData
     }
 
     override fun initListener() {

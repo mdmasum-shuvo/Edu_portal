@@ -40,9 +40,10 @@ open abstract class BaseActivity : DaggerAppCompatActivity(), InternetConnectivi
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, getLayoutResourceFile())
         InternetAvailabilityChecker.init(this)
+
+        initComponent()
         mInternetAvailabilityChecker = InternetAvailabilityChecker.getInstance()
         mInternetAvailabilityChecker!!.addInternetConnectivityListener(this)
-        initComponent()
         initFunctionality()
         initListener()
 

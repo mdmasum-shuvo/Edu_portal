@@ -1,4 +1,4 @@
-package com.masum.edu_portal.feature.myclass.adapter
+package com.masum.edu_portal.feature.member.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,10 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.callback_listener.ItemClickListener
-import com.masum.edu_portal.databinding.ItemTodaysClassBinding
-import com.masum.edu_portal.feature.myclass.data.Datum
+import com.masum.edu_portal.databinding.ItemAttendanceBinding
+import com.masum.edu_portal.feature.member.data.profile.attendance.Datum
 
-class TodaysClassAdapter constructor(private val context: Context?, private val list: List<Datum>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AttendanceAdapter constructor(private val context: Context?, private val list: List<Datum>?) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var layoutInflater: LayoutInflater? = null
     private lateinit var listener: ItemClickListener
 
@@ -22,11 +23,11 @@ class TodaysClassAdapter constructor(private val context: Context?, private val 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        val dashboardBinding: ItemTodaysClassBinding = DataBindingUtil.inflate(
+        val dashboardBinding: ItemAttendanceBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.item_todays_class, parent, false
+            R.layout.item_attendance, parent, false
         )
-        return  ViewFilesHolder(
+        return ViewFilesHolder(
             dashboardBinding
         )
 
@@ -35,13 +36,20 @@ class TodaysClassAdapter constructor(private val context: Context?, private val 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if (holder is ViewFilesHolder) {
-            holder.binding.data=list!!.get(position)
+            holder.binding.data = list!!.get(position)
+            if (list[position].attendanceStatus.equals("P")) {
+                holder.binding.imgStatus.setBackground(
+                    context!!.resources.getDrawable(R.drawable.circle_shape_green)
+                )
+            } else {
+                holder.binding.imgStatus.setBackground(
+                    context!!.resources.getDrawable(R.drawable.circle_shape_red)
+                )
+            }
             holder.itemView.setOnClickListener {
             }
         }
     }
-
-
 
 
     override fun getItemCount(): Int {
@@ -53,9 +61,9 @@ class TodaysClassAdapter constructor(private val context: Context?, private val 
     }
 
 
-    class ViewFilesHolder(itemBinding: ItemTodaysClassBinding) :
+    class ViewFilesHolder(itemBinding: ItemAttendanceBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        val binding: ItemTodaysClassBinding
+        val binding: ItemAttendanceBinding
 
         init {
             binding = itemBinding

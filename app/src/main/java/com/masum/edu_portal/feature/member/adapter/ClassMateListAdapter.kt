@@ -101,13 +101,12 @@ class ClassMateListAdapter constructor(val context: Context?, val list: List<Dat
         }
 
         fun bindView(context: Context, member: Datum) {
-            /*     binding.data = member
-                 Glide.with(context)
+                 binding.data = member
+         /*        Glide.with(context)
                      .load(member.)
                      .placeholder(R.drawable.ic_person)
-                     .into(binding.memberImage)
+                     .into(binding.memberImage)*/
 
-     */
 
 
         }

@@ -2,8 +2,9 @@ package com.masum.edu_portal.feature.exam.data
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class Datum {
+class Datum :Serializable{
     @SerializedName("exam_students_subjects_id")
     @Expose
     var examStudentsSubjectsId: Int? = null
