@@ -11,7 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".feature.member.view.MyProfileActivity"></activity>
+        <activity android:name=".feature.others.OthersActivity"></activity>
+        <activity android:name=".feature.home.view.AttendanceActivity" />
+        <activity android:name=".feature.homework.view.HomeWorkActivity" />
+        <activity android:name=".feature.study.view.StudyActivity" />
+        <activity android:name=".feature.exam.view.ExamActivity" />
+        <activity android:name=".feature.member.view.AllStudentActivity" />
+        <activity android:name=".feature.member.view.MyProfileActivity" />
         <activity android:name=".feature.myclass.view.MyClassActivity" />
         <activity android:name=".feature.home.view.NotificationActivity" />
         <activity android:name=".feature.home.view.UploadPostActivity" />

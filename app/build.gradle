@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.masum.edu_portal"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -114,6 +114,7 @@ dependencies {
 
     //spinner
     implementation 'com.github.jrizani:JRSpinner:1.0.0'
+    implementation project(':myzoomlibrary')
 
 }
 

@@ -1,12 +1,13 @@
 package com.masum.edu_portal.di
 
-import com.masum.edu_portal.di.viewmodel_module.ClassViewModelModule
-import com.masum.edu_portal.di.viewmodel_module.ProfileViewModelModule
+import com.masum.edu_portal.di.viewmodel_module.*
+import com.masum.edu_portal.feature.exam.view.ExamActivity
 import com.masum.edu_portal.feature.home.view.HomeActivity
 import com.masum.edu_portal.feature.launch.view.LauncherActivity
 import com.masum.edu_portal.feature.member.view.MyProfileActivity
 import com.masum.edu_portal.feature.member.view.ProfileActivity
 import com.masum.edu_portal.feature.myclass.view.MyClassActivity
+import com.masum.edu_portal.feature.study.view.StudyActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -27,5 +28,11 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [ProfileViewModelModule::class])
     abstract fun myProfileActivity(): MyProfileActivity
+
+    @ContributesAndroidInjector(modules = [GlobalViewModelModule::class,ExamViewModelModule::class])
+    abstract fun examActivity(): ExamActivity
+
+    @ContributesAndroidInjector(modules = [StudyViewModelModule::class])
+    abstract fun studyActivity(): StudyActivity
 
 }

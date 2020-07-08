@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="data"
@@ -10,7 +11,7 @@
 <androidx.cardview.widget.CardView
     android:id="@+id/item_member"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/_150sdp"
+    android:layout_height="@dimen/_110sdp"
     card_view:cardCornerRadius="@dimen/_2sdp"
     android:layout_marginTop="@dimen/_6sdp"
     android:layout_marginBottom="@dimen/_6sdp"
@@ -22,7 +23,7 @@
     card_view:cardElevation="@dimen/_2sdp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
-        android:layout_width="@dimen/_110sdp"
+        android:layout_width="@dimen/_90sdp"
         android:layout_height="match_parent">
 
         <ImageView
@@ -30,21 +31,20 @@
             android:id="@+id/member_image"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:src="@drawable/ic_person"
-            android:layout_height="@dimen/_70sdp"
+            android:src="@drawable/person"
+            android:layout_height="@dimen/_60sdp"
             android:contentDescription="@string/empty_content_description"
             card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:layout_marginStart="@dimen/_6sdp"
-            android:layout_marginEnd="@dimen/_6sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:id="@+id/doc_name"
-            android:textSize="@dimen/_11sdp"
+            android:textSize="@dimen/_9sdp"
             android:text="@{String.valueOf(data.studentId)}"
             android:fontFamily="sans-serif-medium"
-            android:textStyle="bold"
+            tools:text="120231564"
             android:textColor="@color/text_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,10 +54,11 @@
         <TextView
             android:layout_marginStart="@dimen/_6sdp"
             android:layout_marginEnd="@dimen/_6sdp"
-            android:textSize="@dimen/_9sdp"
-            android:textColor="@color/text_color"
+            android:textSize="@dimen/_7sdp"
+            android:textColor="@color/searchTextColor"
             android:id="@+id/doc_education"
             android:text="@{data.studentName}"
+            tools:text="Masum Talukder"
             android:layout_width="match_parent"
             android:maxLines="2"
             android:layout_height="wrap_content"
@@ -69,8 +70,9 @@
             android:layout_marginEnd="@dimen/_6sdp"
             android:id="@+id/doc_speciality"
             android:text="@{data.studentEmail}"
+            tools:text="masum@gmail.com"
             android:maxLines="1"
-            android:textSize="@dimen/_9sdp"
+            android:textSize="@dimen/_6sdp"
             android:textColor="@color/searchTextColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,7 +84,7 @@
             android:id="@+id/btnPhone"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:background="@color/text_color"
+            android:background="@color/colorPrimary"
             android:clickable="true"
             android:focusable="true"
             android:foreground="@drawable/ripple_dark"

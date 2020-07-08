@@ -75,21 +75,21 @@ class MyProfileActivity : BaseActivity() {
             if (dataResource != null) {
                 when (dataResource.status) {
                     DataResource.DataStatus.LOADING -> {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            showProgressDialog()
-                        }
+
+                        showProgressDialog()
+
                     }
                     DataResource.DataStatus.ERROR -> {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            showErrorDialog("Failed!", dataResource.message)
-                            hideProgressDialog()
-                        }
+
+                        showErrorDialog("Failed!", dataResource.message)
+                        hideProgressDialog()
+
                     }
 
                     DataResource.DataStatus.SUCCESS -> {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            hideProgressDialog()
-                        }
+
+                        hideProgressDialog()
+
                         if (dataResource.data!!.data != null) {
                             if (!attendanceList.isEmpty()) {
                                 attendanceList.clear()

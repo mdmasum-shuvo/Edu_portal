@@ -1,4 +1,4 @@
-package com.masum.edu_portal.feature.exam.data
+package com.masum.edu_portal.feature.exam.data.exam
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

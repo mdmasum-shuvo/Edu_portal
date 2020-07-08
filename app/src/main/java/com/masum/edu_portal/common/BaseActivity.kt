@@ -1,11 +1,13 @@
 package com.masum.edu_portal.common
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.transition.Slide
@@ -26,7 +28,6 @@ import com.treebo.internetavailabilitychecker.InternetConnectivityListener
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 import kotlinx.android.synthetic.main.show_empty_view.*
-import javax.inject.Inject
 
 open abstract class BaseActivity : DaggerAppCompatActivity(), InternetConnectivityListener,  SwipeRefreshLayout.OnRefreshListener  {
 
@@ -157,6 +158,16 @@ open abstract class BaseActivity : DaggerAppCompatActivity(), InternetConnectivi
             }
             .setIcon(android.R.drawable.ic_dialog_alert)
             .show()
+    }
+
+    open fun isNetworkAvailable(): Boolean {
+        val connectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        var activeNetworkInfo: NetworkInfo? = null
+        if (connectivityManager != null) {
+            activeNetworkInfo = connectivityManager.activeNetworkInfo
+        }
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
 

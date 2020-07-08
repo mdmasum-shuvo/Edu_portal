@@ -11,6 +11,7 @@
     <string name="gps_chec">Please check your gps connection</string>
     <string name="logout_message">Are you sure you want to logout?</string>
     <string name="lorem_short"> sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
+    <string name="internet_not_available">Internet is not available!!, Please check your connection or connect to the internet</string>
 
     <!-- Drawer Navigation -->
     <string name="navigation_drawer_open"> Open </string>
@@ -84,6 +85,7 @@
     <string name="about_edu">About App</string>
     <string name="ocd_member">Ocd Member</string>
     <string name="see_all_member">See All Classmate</string>
+    <string name="see_all_lecture">See All Lecture</string>
     <string name="seeAll">See All</string>
     <string name="bottom_nav_post">News feed</string>
     <string name="update_available">update available</string>

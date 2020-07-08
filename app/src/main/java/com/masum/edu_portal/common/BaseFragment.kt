@@ -6,7 +6,10 @@ import android.app.DatePickerDialog.OnDateSetListener
 import android.app.ProgressDialog
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
+import android.content.Context
 import android.graphics.Color
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.view.View
 import android.widget.EditText
@@ -15,7 +18,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.masum.edu_portal.R
 import com.masum.edu_portal.utils.AnimationUtility
@@ -44,6 +46,8 @@ open abstract class BaseFragment : DaggerFragment(), InternetConnectivityListene
         InternetAvailabilityChecker.init(mActivity)
         mInternetAvailabilityChecker = InternetAvailabilityChecker.getInstance()
         mInternetAvailabilityChecker!!.addInternetConnectivityListener(this)
+
+
     }
 
 
@@ -113,6 +117,16 @@ open abstract class BaseFragment : DaggerFragment(), InternetConnectivityListene
         if (progressDialog != null && progressDialog!!.isShowing()) {
             mActivity!!.runOnUiThread(Runnable { progressDialog!!.dismiss() })
         }
+    }
+
+    open fun isNetworkAvailable(): Boolean {
+        val connectivityManager =
+            mActivity!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+        var activeNetworkInfo: NetworkInfo? = null
+        if (connectivityManager != null) {
+            activeNetworkInfo = connectivityManager.activeNetworkInfo
+        }
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
 
@@ -205,7 +219,6 @@ open abstract class BaseFragment : DaggerFragment(), InternetConnectivityListene
         mTimePicker!!.setTitle("Select Time")
         mTimePicker!!.show()
     }
-
 
 
     open fun showErrorDialog(title: String?, message: String?) {

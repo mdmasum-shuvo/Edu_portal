@@ -49,7 +49,6 @@ class PostFragment : BaseFragment() {
 
         callData()
         setRecylerView()
-
         clickListener()
 
     }

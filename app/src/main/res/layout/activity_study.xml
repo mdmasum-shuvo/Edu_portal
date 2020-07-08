@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.study.view.StudyActivity">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/consContainer"
+      android:background="@color/white"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <TextView
+          android:id="@+id/tv_class_mate"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/_15sdp"
+          android:text="All Lecture"
+          android:layout_marginStart="@dimen/_6sdp"
+          android:textColor="@color/text_color"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintStart_toStartOf="parent"/>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rv_all_lecture"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:drawSelectorOnTop="true"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          app:layout_constraintStart_toStartOf="@+id/tv_class_mate"
+          app:layout_constraintTop_toBottomOf="@+id/tv_class_mate" />
+      <TextView
+          android:id="@+id/tv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/_15sdp"
+          android:text="All Video Lecture"
+          android:layout_marginStart="@dimen/_6sdp"
+          android:textColor="@color/text_color"
+          app:layout_constraintTop_toBottomOf="@+id/rv_all_lecture"
+          app:layout_constraintStart_toStartOf="parent"/>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rv_video_lecture"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:drawSelectorOnTop="true"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          app:layout_constraintStart_toStartOf="@+id/tv"
+          app:layout_constraintTop_toBottomOf="@+id/tv" />
+
+      <TextView
+          android:id="@+id/tv_last"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/_15sdp"
+          android:text="Last Class Lecture"
+          android:layout_marginStart="@dimen/_6sdp"
+          android:textColor="@color/text_color"
+          app:layout_constraintTop_toBottomOf="@+id/rv_video_lecture"
+          app:layout_constraintStart_toStartOf="parent"/>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rv_last_lecture"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:drawSelectorOnTop="true"
+          app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          app:layout_constraintStart_toStartOf="@+id/tv_last"
+          app:layout_constraintTop_toBottomOf="@+id/tv_last" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <include
+        layout="@layout/show_empty_view"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

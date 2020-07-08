@@ -63,6 +63,10 @@ class LoginFragment : BaseFragment() {
             ViewModelProviders.of(this, viewModelProviderFactory).get(AuthViewModel::class.java)
 
         binding.btnLogin.setOnClickListener({
+            if (!isNetworkAvailable()){
+                showErrorDialog(getString(R.string.noInterNet),getString(R.string.internet_not_available))
+                return@setOnClickListener
+            }
             if(isValid()){
                 viewmodel.authentication(
                     binding.etUserName.text.toString(),
@@ -82,7 +86,7 @@ class LoginFragment : BaseFragment() {
             return false
         }
         else if(organizationId==-1){
-            showAlertDialog("Error","Please select your institute")
+            showErrorDialog("Error","Please select your institute")
         }
         return true
 

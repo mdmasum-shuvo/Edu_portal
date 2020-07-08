@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.masum.edu_portal.feature.exam.data.Datum" />
+            type="com.masum.edu_portal.feature.exam.data.exam.Datum" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

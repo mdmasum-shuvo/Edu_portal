@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.callback_listener.ItemClickListener
 import com.masum.edu_portal.databinding.ItemExamBinding
-import com.masum.edu_portal.feature.exam.data.Datum
+import com.masum.edu_portal.feature.exam.data.exam.Datum
 
 class ExamAdapter  constructor(private val context: Context?, private val list: List<Datum>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var layoutInflater: LayoutInflater? = null
