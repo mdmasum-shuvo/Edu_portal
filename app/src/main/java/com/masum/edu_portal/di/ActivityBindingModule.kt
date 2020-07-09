@@ -3,6 +3,7 @@ package com.masum.edu_portal.di
 import com.masum.edu_portal.di.viewmodel_module.*
 import com.masum.edu_portal.feature.exam.view.ExamActivity
 import com.masum.edu_portal.feature.home.view.HomeActivity
+import com.masum.edu_portal.feature.homework.view.HomeWorkActivity
 import com.masum.edu_portal.feature.launch.view.LauncherActivity
 import com.masum.edu_portal.feature.member.view.MyProfileActivity
 import com.masum.edu_portal.feature.member.view.ProfileActivity
@@ -34,5 +35,8 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [StudyViewModelModule::class])
     abstract fun studyActivity(): StudyActivity
+
+    @ContributesAndroidInjector(modules = [HomeworkViewModelModule::class])
+    abstract fun homeworkActivity():HomeWorkActivity
 
 }

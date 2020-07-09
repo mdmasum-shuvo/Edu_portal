@@ -21,6 +21,9 @@ object HTTP_PARAM {
     const val ALL_STUDY_LIST="allstudylist"
     const val ALL_STUDY_VIDEO_LIST="allstudyvideolist"
     const val LAST_CLASS_LECTURE="lastclasslecturelist"
+    const val NEW_HOMEWORK="newhomeworklist"
+    const val POST_HOMEWORK="homeworksubmited"
+    const val ALL_HOMEWORK="homeworkmark"
 
 
 
@@ -37,6 +40,12 @@ object HTTP_PARAM {
     const val CHAPTER_ID="chapter_id"
     const val TOPIC_ID="topic_id"
     const val EXAM_ID="exam_id"
+
+    //homework
+    const val HOMEWORK_ID="homework_id"
+    const val HOMEWORK_TEXT_DATA="text_data"
+    const val ATTACHMENT="file_name"
+    const val COMMENTS="comments"
 
     const val START_DATE="start_date"
     const val END_DATE="end_date"

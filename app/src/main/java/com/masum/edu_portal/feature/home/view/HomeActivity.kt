@@ -53,25 +53,23 @@ class HomeActivity : BaseActivity() {
         setToolbar()
         setDrawerNavigation()
         setBottomNavigation()
-       // listener = HomeRepository()
+        // listener = HomeRepository()
         //viewModel = ViewModelProviders.of(mActivity as HomeActivity).get(MyViewModel::class.java)
         //loadFragment(HomeDashboardFragment())
     }
 
 
     override fun initFunctionality() {
-       // callData()
+        // callData()
     }
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initListener() {
-       // callLiveDataListener();
+        // callLiveDataListener();
 
         notification.setOnClickListener {
-            val bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
-            startActivity(NotificationActivity::class.java,false,bundle)
-
+            logout()
         }
     }
 
@@ -263,7 +261,7 @@ class HomeActivity : BaseActivity() {
 
     }*/
 
-  /*  override fun progress() {
-    }
-*/
+    /*  override fun progress() {
+      }
+  */
 }

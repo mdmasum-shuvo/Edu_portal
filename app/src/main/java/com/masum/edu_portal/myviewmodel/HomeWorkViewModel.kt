@@ -1,55 +1,83 @@
 package com.masum.edu_portal.myviewmodel
-
-import androidx.lifecycle.*
-import com.google.gson.Gson
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.LiveDataReactiveStreams
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.di.SessionManager
-import com.masum.edu_portal.feature.exam.data.exam.ExamListResponse
-import com.masum.edu_portal.feature.exam.data.question.QuestionResponse
+import com.masum.edu_portal.feature.homework.data.all_homework.HomeWorkResponse
+import com.masum.edu_portal.feature.study.data.all_study.AllStudyResponse
 import com.masum.edu_portal.networks.ApiService
 import com.masum.edu_portal.networks.HTTP_PARAM
 import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
 import javax.inject.Inject
-
-class ExamViewModel @Inject constructor(
+class HomeWorkViewModel @Inject constructor(
     val apiService: ApiService,
     val sessionManager: SessionManager
 ) : ViewModel() {
+    val allHomeworkList: MediatorLiveData<DataResource<HomeWorkResponse>> =
+        MediatorLiveData()
+    val newHomeworkList: MediatorLiveData<DataResource<HomeWorkResponse>> =
+        MediatorLiveData()
+    val lastClassStudyDataList: MediatorLiveData<DataResource<AllStudyResponse>> =
+        MediatorLiveData()
 
 
-    val examList: MediatorLiveData<DataResource<ExamListResponse>> = MediatorLiveData()
-
-    val questionBankList: MediatorLiveData<DataResource<QuestionResponse>> = MediatorLiveData()
-
-    val examQuestionList: MediatorLiveData<DataResource<QuestionResponse>> = MediatorLiveData()
-
-    var currentPage = 0
-    private val gson = Gson()
-
-    fun getUpComingExamData() {
-        currentPage++
+    fun getAllHomework() {
 
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
-        builder.addFormDataPart(HTTP_PARAM.SUBJECT_ID, "1")
+        builder.addFormDataPart(HTTP_PARAM.STUDENT_ID, "1")
+        allHomeworkList.value= DataResource.loading()
+        val source: LiveData<DataResource<HomeWorkResponse>> =
+            LiveDataReactiveStreams.fromPublisher(
+                apiService.allHomework(
+                    builder.build(),
+                    "Bearer " + sessionManager.getAuthUser().value!!.data!!.accessToken
+                )
+                    .onErrorReturn {
+                        val user = HomeWorkResponse()
+                        user.data = null
+                        user
+                    }
+                    .map(Function<HomeWorkResponse, DataResource<HomeWorkResponse>> { data ->
+                        if (data.data == null) {
+                            DataResource.error("Something went wrong")
+                        } else {
+                            DataResource.success(data)
+                        }
+                    })
+                    .subscribeOn(Schedulers.io())
+            )
+
+        allHomeworkList.addSource(
+            source, Observer { data ->
+                allHomeworkList.value = data
+            }
+        )
+    }
+
+    fun getNewHomework() {
+
+        val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
         builder.addFormDataPart(HTTP_PARAM.STUDENT_ID, "1")
 
-        examList.value = DataResource.loading()
-        val source: LiveData<DataResource<ExamListResponse>> =
+        val source: LiveData<DataResource<HomeWorkResponse>> =
             LiveDataReactiveStreams.fromPublisher(
-                apiService.upComingExamList(
+                apiService.newHomework(
                     builder.build(),
                     "Bearer " + sessionManager.getAuthUser().value!!.data!!.accessToken
                 )
                     .onErrorReturn {
-                        val user =
-                            ExamListResponse()
+                        val user = HomeWorkResponse()
                         user.data = null
                         user
                     }
-                    .map(Function<ExamListResponse, DataResource<ExamListResponse>> { data ->
+                    .map(Function<HomeWorkResponse, DataResource<HomeWorkResponse>> { data ->
                         if (data.data == null) {
                             DataResource.error("Something went wrong")
                         } else {
@@ -59,36 +87,30 @@ class ExamViewModel @Inject constructor(
                     .subscribeOn(Schedulers.io())
             )
 
-        examList.addSource(
+        newHomeworkList.addSource(
             source, Observer { data ->
-                examList.value = data
+                newHomeworkList.value = data
             }
         )
     }
 
+    fun postHomeworkAttachment() {
 
-    fun getQuestionListData() {
-        currentPage++
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
-        builder.addFormDataPart(HTTP_PARAM.SUBJECT_ID, "1")
-        builder.addFormDataPart(HTTP_PARAM.CHAPTER_ID, "3")
-        builder.addFormDataPart(HTTP_PARAM.CLASS_ID, "9")
-        builder.addFormDataPart(HTTP_PARAM.TOPIC_ID, "8")
 
-        val source: LiveData<DataResource<QuestionResponse>> =
+        val source: LiveData<DataResource<AllStudyResponse>> =
             LiveDataReactiveStreams.fromPublisher(
-                apiService.questionBank(
+                apiService.lastClassLecture(
                     builder.build(),
                     "Bearer " + sessionManager.getAuthUser().value!!.data!!.accessToken
                 )
                     .onErrorReturn {
-                        val user =
-                            QuestionResponse()
+                        val user = AllStudyResponse()
                         user.data = null
                         user
                     }
-                    .map(Function<QuestionResponse, DataResource<QuestionResponse>> { data ->
+                    .map(Function<AllStudyResponse, DataResource<AllStudyResponse>> { data ->
                         if (data.data == null) {
                             DataResource.error("Something went wrong")
                         } else {
@@ -98,46 +120,11 @@ class ExamViewModel @Inject constructor(
                     .subscribeOn(Schedulers.io())
             )
 
-        questionBankList.addSource(
+        lastClassStudyDataList.addSource(
             source, Observer { data ->
-                questionBankList.value = data
+                lastClassStudyDataList.value = data
             }
         )
     }
 
-    fun getExamQuestionListData() {
-        currentPage++
-        val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-        builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
-        builder.addFormDataPart(HTTP_PARAM.EXAM_ID, "1")
-
-
-        val source: LiveData<DataResource<QuestionResponse>> =
-            LiveDataReactiveStreams.fromPublisher(
-                apiService.examQuestion(
-                    builder.build(),
-                    "Bearer " + sessionManager.getAuthUser().value!!.data!!.accessToken
-                )
-                    .onErrorReturn {
-                        val user =
-                            QuestionResponse()
-                        user.data = null
-                        user
-                    }
-                    .map(Function<QuestionResponse, DataResource<QuestionResponse>> { data ->
-                        if (data.data == null) {
-                            DataResource.error("Something went wrong")
-                        } else {
-                            DataResource.success(data)
-                        }
-                    })
-                    .subscribeOn(Schedulers.io())
-            )
-
-        examQuestionList.addSource(
-            source, Observer { data ->
-                examQuestionList.value = data
-            }
-        )
-    }
 }

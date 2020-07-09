@@ -4,6 +4,8 @@ import com.masum.edu_portal.feature.auth.datamodel.LoginResponse
 import com.masum.edu_portal.feature.exam.data.exam.ExamListResponse
 import com.masum.edu_portal.feature.exam.data.question.QuestionResponse
 import com.masum.edu_portal.feature.home.data.class_mate.ClassMateResponse
+import com.masum.edu_portal.feature.homework.data.PostResponse
+import com.masum.edu_portal.feature.homework.data.all_homework.HomeWorkResponse
 import com.masum.edu_portal.feature.member.data.profile.attendance.AttendanceResponse
 import com.masum.edu_portal.feature.myclass.data.ClassListResponse
 import com.masum.edu_portal.feature.study.data.all_study.AllStudyResponse
@@ -62,7 +64,7 @@ interface ApiService {
     fun organizationList(): Flowable<OrgListResponse>
 
 
-    @GET(HTTP_PARAM.SUBJECT_LIST)
+    @POST(HTTP_PARAM.SUBJECT_LIST)
     fun subjectList(
         @Body requestBody: RequestBody,
         @Header(HTTP_PARAM.AUTHORIZATION) token: String?
@@ -97,5 +99,25 @@ interface ApiService {
         @Header(HTTP_PARAM.AUTHORIZATION) token: String?
     ): Flowable<AllStudyResponse>
 
+
+    //home work api
+
+    @POST(HTTP_PARAM.ALL_HOMEWORK)
+    fun allHomework(
+        @Body requestBody: RequestBody,
+        @Header(HTTP_PARAM.AUTHORIZATION) token: String?
+    ): Flowable<HomeWorkResponse>
+
+    @POST(HTTP_PARAM.NEW_HOMEWORK)
+    fun newHomework(
+        @Body requestBody: RequestBody,
+        @Header(HTTP_PARAM.AUTHORIZATION) token: String?
+    ): Flowable<HomeWorkResponse>
+
+    @POST(HTTP_PARAM.POST_HOMEWORK)
+    fun postHomework(
+        @Body requestBody: RequestBody,
+        @Header(HTTP_PARAM.AUTHORIZATION) token: String?
+    ): Flowable<PostResponse>
 
 }

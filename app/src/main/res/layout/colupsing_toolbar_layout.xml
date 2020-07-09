@@ -20,43 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="0dp"
-            android:layout_marginEnd="@dimen/_10sdp"
             android:gravity="center|end">
 
-            <FrameLayout
-                android:id="@+id/notification"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:clickable="true"
-                android:focusable="true"
-                android:visibility="gone"
-                android:foreground="@drawable/ripple_dark">
-
-                <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:clickable="false"
-                    android:contentDescription="@string/empty_content_description"
-                    android:focusable="false"
-                    android:padding="@dimen/_6sdp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_notification" />
-
-                <TextView
-                    android:id="@+id/badge_notification"
-                    android:layout_width="@dimen/_14sdp"
-                    android:layout_height="@dimen/_14sdp"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:background="@drawable/shape_circle"
-                    android:gravity="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_7sdp"
-                    android:textStyle="bold" />
-
-            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/profile"
@@ -78,6 +43,39 @@
                     android:padding="@dimen/_6sdp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_profile" />
+
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/notification"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple_dark">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clickable="false"
+                    android:contentDescription="@string/empty_content_description"
+                    android:focusable="false"
+                    android:padding="@dimen/_6sdp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logout_icon" />
+
+                <TextView
+                    android:id="@+id/badge_notification"
+                    android:layout_width="@dimen/_14sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/shape_circle"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_7sdp"
+                    android:textStyle="bold" />
 
             </FrameLayout>
 

@@ -87,6 +87,7 @@ class LoginFragment : BaseFragment() {
         }
         else if(organizationId==-1){
             showErrorDialog("Error","Please select your institute")
+            return false
         }
         return true
 

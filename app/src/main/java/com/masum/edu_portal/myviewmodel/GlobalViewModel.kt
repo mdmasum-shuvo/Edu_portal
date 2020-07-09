@@ -18,59 +18,65 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GlobalViewModel @Inject constructor(var apiService: ApiService,var sessionManager: SessionManager) :ViewModel(){
+class GlobalViewModel @Inject constructor(
+    var apiService: ApiService,
+    var sessionManager: SessionManager
+) : ViewModel() {
 
-    val organization:MediatorLiveData<DataResource<OrgListResponse>> =  MediatorLiveData()
-    val subjectLiveData:MediatorLiveData<DataResource<SubjectListResponse>> =  MediatorLiveData()
+    val organization: MediatorLiveData<DataResource<OrgListResponse>> = MediatorLiveData()
+    val subjectLiveData: MediatorLiveData<DataResource<SubjectListResponse>> = MediatorLiveData()
 
-    fun getOrganizationList(){
-       var source: LiveData<DataResource<OrgListResponse>> =LiveDataReactiveStreams.fromPublisher(
-           apiService.organizationList().onErrorReturn(object :
-            Function<Throwable, OrgListResponse> {
-               override fun apply(t: Throwable): OrgListResponse {
-                   val user = OrgListResponse()
-                   user.data=null
-                   return user
-               }
-           })
-               .map(Function<OrgListResponse, DataResource<OrgListResponse>> { data ->
-                   if (data.data == null) {
-                       DataResource.error("Something went wrong")
-                   } else DataResource.success(data)
-               })
-               .subscribeOn(Schedulers.io())
-       )
-        organization.addSource(source, Observer { data->
-            organization.value=data
+    fun getOrganizationList() {
+        var source: LiveData<DataResource<OrgListResponse>> = LiveDataReactiveStreams.fromPublisher(
+            apiService.organizationList().onErrorReturn(object :
+                Function<Throwable, OrgListResponse> {
+                override fun apply(t: Throwable): OrgListResponse {
+                    val user = OrgListResponse()
+                    user.data = null
+                    return user
+                }
+            })
+                .map(Function<OrgListResponse, DataResource<OrgListResponse>> { data ->
+                    if (data.data == null) {
+                        DataResource.error("Something went wrong")
+                    } else DataResource.success(data)
+                })
+                .subscribeOn(Schedulers.io())
+        )
+        organization.addSource(source, Observer { data ->
+            organization.value = data
             organization.removeSource(source)
         })
 
     }
 
 
-
-    fun getSubjectList(){
+    fun getSubjectList() {
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
 
-       var source: LiveData<DataResource<SubjectListResponse>> =LiveDataReactiveStreams.fromPublisher(
-           apiService.subjectList(builder.build(),sessionManager.getAuthUser().value!!.data!!.accessToken).onErrorReturn(object :
-            Function<Throwable, SubjectListResponse> {
-               override fun apply(t: Throwable): SubjectListResponse {
-                   val user = SubjectListResponse()
-                   user.data=null
-                   return user
-               }
-           })
-               .map(Function<SubjectListResponse, DataResource<SubjectListResponse>> { data ->
-                   if (data.data == null) {
-                       DataResource.error("Something went wrong")
-                   } else DataResource.success(data)
-               })
-               .subscribeOn(Schedulers.io())
-       )
-        subjectLiveData.addSource(source, Observer { data->
-            subjectLiveData.value=data
+        var source: LiveData<DataResource<SubjectListResponse>> =
+            LiveDataReactiveStreams.fromPublisher(
+                apiService.subjectList(
+                    builder.build(),
+                    "Bearer " + sessionManager.getAuthUser().value!!.data!!.accessToken
+                ).onErrorReturn(object :
+                    Function<Throwable, SubjectListResponse> {
+                    override fun apply(t: Throwable): SubjectListResponse {
+                        val user = SubjectListResponse()
+                        user.data = null
+                        return user
+                    }
+                })
+                    .map(Function<SubjectListResponse, DataResource<SubjectListResponse>> { data ->
+                        if (data.data == null) {
+                            DataResource.error("Something went wrong")
+                        } else DataResource.success(data)
+                    })
+                    .subscribeOn(Schedulers.io())
+            )
+        subjectLiveData.addSource(source, Observer { data ->
+            subjectLiveData.value = data
             subjectLiveData.removeSource(source)
         })
 

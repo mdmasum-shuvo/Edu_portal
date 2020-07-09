@@ -208,6 +208,20 @@ class HomeDashboardFragment : BaseFragment() {
                             }
                             binding.tvFeed.visibility = View.VISIBLE
                             examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
+                            examList.addAll(dataResource.data!!.data!!)
                             examAdapter.notifyDataSetChanged()
                         }
                     }

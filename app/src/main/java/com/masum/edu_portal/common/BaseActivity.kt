@@ -15,6 +15,8 @@ import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -82,6 +84,14 @@ open abstract class BaseActivity : DaggerAppCompatActivity(), InternetConnectivi
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
+
+    open fun setToolbarTitle(title: String?) {
+        if (supportActionBar != null) {
+            supportActionBar!!.title = title
+            val tvTitle: TextView = findViewById(R.id.toolbar_title)
+            tvTitle.text = title
+        }
+    }
     protected fun setNotificationBarBlackNWhite() {
         if (isBuildVersionOk) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -137,7 +147,9 @@ open abstract class BaseActivity : DaggerAppCompatActivity(), InternetConnectivi
             .show()
     }
 
-
+    fun showToast(msg: String) {
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
+    }
     open fun showFinishAlertDialog(title: String?, message: String?) {
         val builder: androidx.appcompat.app.AlertDialog.Builder
         builder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

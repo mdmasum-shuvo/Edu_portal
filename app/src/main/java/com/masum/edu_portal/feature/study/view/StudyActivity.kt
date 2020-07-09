@@ -1,31 +1,38 @@
 package com.masum.edu_portal.feature.study.view
 
+import android.content.Intent
 import android.os.Build
+import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
+import com.masum.edu_portal.common.Constant
+import com.masum.edu_portal.common.callback_listener.ItemClickListener
 import com.masum.edu_portal.databinding.ActivityStudyBinding
 import com.masum.edu_portal.di.ViewModelProviderFactory
-import com.masum.edu_portal.feature.exam.adapter.ExamAdapter
-import com.masum.edu_portal.feature.home.adapter.DashboardAdapter
-import com.masum.edu_portal.feature.home.data.DashboardList
-import com.masum.edu_portal.feature.member.adapter.ClassMateListAdapter
+import com.masum.edu_portal.feature.member.view.ProfileActivity
 import com.masum.edu_portal.feature.study.adapter.AllClassAdapter
 import com.masum.edu_portal.feature.study.adapter.AllVideoLectureAdapter
 import com.masum.edu_portal.feature.study.adapter.LastClassLectureAdapter
-import com.masum.edu_portal.myviewmodel.ClassViewModel
-import com.masum.edu_portal.myviewmodel.GlobalViewModel
+import com.masum.edu_portal.feature.study.data.all_study.Datum
 import com.masum.edu_portal.myviewmodel.StudyViewModel
 import com.masum.edu_portal.utils.MyDividerItemDecoration
-import kotlinx.android.synthetic.main.fragment_home_dashboard.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class StudyActivity : BaseActivity() {
     private lateinit var binding: ActivityStudyBinding
+    private var allStudyList = ArrayList<Datum>()
+    private var allVideoLectureList = ArrayList<Datum>()
+    private var allLastLectureList = ArrayList<Datum>()
+    private lateinit var lastClassLectureAdapter: LastClassLectureAdapter
+    private lateinit var allVideoLectureAdapter: AllVideoLectureAdapter
+    private lateinit var allClassLectureAdapter: AllClassAdapter
 
     @Inject
     lateinit var studyViewModel: StudyViewModel
@@ -38,11 +45,14 @@ class StudyActivity : BaseActivity() {
 
     override fun initComponent() {
         binding = getBinding() as ActivityStudyBinding
+        binding.pullToRefresh.setOnRefreshListener(this)
+
         studyViewModel =
             ViewModelProviders.of(this, viewModelProviderFactory).get(StudyViewModel::class.java)
-//        initToolbar()
-       // enableBackButton()
-
+        initToolbar()
+        enableBackButton()
+        setToolbarTitle(getString(R.string.study))
+        setOnlyStatusBarTransparent()
         setRecylerView()
     }
 
@@ -80,9 +90,19 @@ class StudyActivity : BaseActivity() {
                 16
             )
         )
+
+        lastClassLectureAdapter = LastClassLectureAdapter(this, allLastLectureList)
+        binding.rvLastLecture.adapter = lastClassLectureAdapter
+
+        allClassLectureAdapter = AllClassAdapter(this, allStudyList)
+        binding.rvAllLecture.adapter = allClassLectureAdapter
+
+        allVideoLectureAdapter = AllVideoLectureAdapter(this, allVideoLectureList)
+        binding.rvVideoLecture.adapter = allVideoLectureAdapter
     }
 
     override fun initFunctionality() {
+        callData()
         observeAllLecture()
         observeAllVideoLecture()
         observeLastClassLecture()
@@ -113,16 +133,15 @@ class StudyActivity : BaseActivity() {
                         }
                         if (dataResource.data!!.data != null) {
 
-                            /*      if (!classList.isEmpty()) {
-                                      classList.clear()
-                                  }
-
-
-                                  binding.rv.adapter = classAdapter*/
-
-                            var lastClassLectureAdapter =
-                                LastClassLectureAdapter(this, dataResource.data!!.data!!.data)
-                            binding.rvLastLecture.adapter = lastClassLectureAdapter
+                            if (!allLastLectureList.isEmpty()) {
+                                allLastLectureList.clear()
+                            }
+                            allLastLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allLastLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allLastLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allLastLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allLastLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            lastClassLectureAdapter.notifyDataSetChanged()
 
 
                         }
@@ -156,17 +175,15 @@ class StudyActivity : BaseActivity() {
                         }
                         if (dataResource.data!!.data != null) {
 
-                            /*      if (!classList.isEmpty()) {
-                                      classList.clear()
-                                  }
-
-
-                                  binding.rv.adapter = classAdapter*/
-
-
-                            var allClassAdapter =
-                                AllVideoLectureAdapter(this, dataResource.data!!.data!!.data)
-                            binding.rvVideoLecture.adapter = allClassAdapter
+                            if (!allVideoLectureList.isEmpty()) {
+                                allVideoLectureList.clear()
+                            }
+                            allVideoLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allVideoLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allVideoLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allVideoLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allVideoLectureList.addAll(dataResource.data!!.data!!.data!!)
+                            allVideoLectureAdapter.notifyDataSetChanged()
                         }
                     }
                 }
@@ -183,7 +200,6 @@ class StudyActivity : BaseActivity() {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             showLoader()
                             binding.pullToRefresh.isRefreshing = false
-
                         }
                     }
                     DataResource.DataStatus.ERROR -> {
@@ -197,15 +213,15 @@ class StudyActivity : BaseActivity() {
                             hideLoader()
                         }
                         if (dataResource.data!!.data != null) {
-
-                            /*      if (!classList.isEmpty()) {
-                                      classList.clear()
-                                  }
-      */
-
-                            var allClassAdapter =
-                                AllClassAdapter(this, dataResource.data!!.data!!.data)
-                            binding.rvAllLecture.adapter = allClassAdapter
+                            if (!allStudyList.isEmpty()) {
+                                allStudyList.clear()
+                            }
+                            allStudyList.addAll(dataResource.data!!.data!!.data!!)
+                            allStudyList.addAll(dataResource.data!!.data!!.data!!)
+                            allStudyList.addAll(dataResource.data!!.data!!.data!!)
+                            allStudyList.addAll(dataResource.data!!.data!!.data!!)
+                            allStudyList.addAll(dataResource.data!!.data!!.data!!)
+                            allClassLectureAdapter.notifyDataSetChanged()
                         }
                     }
                 }
@@ -214,10 +230,69 @@ class StudyActivity : BaseActivity() {
     }
 
     override fun onRefresh() {
+        callData()
     }
 
     override fun initListener() {
-        callData()
+
+        allClassLectureAdapter.setOnItemClickListener(object : ItemClickListener {
+            override fun onClick(position: Int, view: View?) {
+                //toast("item" + position)
+                when (view!!.id) {
+                    R.id.ll_see_all_holder -> {
+                        showToast("Limited Data")
+                    }
+
+                    else -> {
+                       // showToast("Limited Data")
+
+                 /*       var bundle = Bundle()
+                        bundle.putSerializable(Constant.INTENT_KEY, allStudyList.get(position))
+                        var intent = Intent(this@StudyActivity, ProfileActivity::class.java)
+                        intent.putExtras(bundle)
+                        startActivity(intent)*/
+                    }
+                }
+
+            }
+        })
+
+        allVideoLectureAdapter.setOnItemClickListener(object : ItemClickListener {
+            override fun onClick(position: Int, view: View?) {
+                //toast("item" + position)
+                when (view!!.id) {
+                    R.id.ll_see_all_holder -> {
+                        showToast("Limited Data")
+                    }
+
+                    else -> {
+                       // showToast("Limited Data")
+
+                 /*       var bundle = Bundle()
+                        bundle.putSerializable(Constant.INTENT_KEY, allStudyList.get(position))
+                        var intent = Intent(this@StudyActivity, ProfileActivity::class.java)
+                        intent.putExtras(bundle)
+                        startActivity(intent)*/
+                    }
+                }
+
+            }
+        })
+
+
+        lastClassLectureAdapter.setOnItemClickListener(object : ItemClickListener {
+            override fun onClick(position: Int, view: View?) {
+                //toast("item" + position)
+                when (view!!.id) {
+
+                }
+
+            }
+        })
+
+        btnLogout.setOnClickListener{
+            logout()
+        }
     }
 
     override fun onInternetConnectivityChanged(isConnected: Boolean) {
@@ -233,5 +308,17 @@ class StudyActivity : BaseActivity() {
         mInternetAvailabilityChecker!!.removeInternetConnectivityChangeListener(this);
         super.onStop()
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // API 5+ solution
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 
 }

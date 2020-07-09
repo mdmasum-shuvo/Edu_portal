@@ -24,13 +24,15 @@ class LauncherActivity : DaggerAppCompatActivity(), InternetConnectivityListener
 
     private lateinit var viewmodel: GlobalViewModel
     var mInternetAvailabilityChecker: InternetAvailabilityChecker? = null
+
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launcher)
-        viewmodel=ViewModelProviders.of(this,viewModelProviderFactory).get(GlobalViewModel::class.java)
+        viewmodel =
+            ViewModelProviders.of(this, viewModelProviderFactory).get(GlobalViewModel::class.java)
         InternetAvailabilityChecker.init(this)
 
         mInternetAvailabilityChecker = InternetAvailabilityChecker.getInstance()
@@ -38,9 +40,14 @@ class LauncherActivity : DaggerAppCompatActivity(), InternetConnectivityListener
     }
 
     override fun onInternetConnectivityChanged(isConnected: Boolean) {
-        if (isConnected){
+        if (isConnected) {
             viewmodel.getOrganizationList()
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        finish()
     }
 
 

@@ -3,6 +3,7 @@ package com.masum.edu_portal.feature.myclass.view
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import com.masum.edu_portal.myviewmodel.ClassViewModel
 import kotlinx.android.synthetic.main.activity_my_class.*
 import kotlinx.android.synthetic.main.fragment_home_dashboard.*
 import kotlinx.android.synthetic.main.player_layout.view.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.util.ArrayList
 import javax.inject.Inject
 
@@ -77,6 +79,10 @@ class MyClassActivity : BaseActivity() {
             var intent = Intent(this, ZoomMainActivity::class.java)
             intent.putExtras(bundle)
             startActivity(intent)
+        }
+
+        btnLogout.setOnClickListener{
+            logout()
         }
     }
 
@@ -148,5 +154,10 @@ class MyClassActivity : BaseActivity() {
     override fun onStop() {
         mInternetAvailabilityChecker!!.removeInternetConnectivityChangeListener(this);
         super.onStop()
+    }
+
+
+    fun upArrowClicked(view: View) {
+        onBackPressed()
     }
 }

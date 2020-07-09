@@ -38,6 +38,8 @@
 
     <!--Notification count color -->
     <color name="notificationCount">#ce580c</color>
+    <color name="deep_red">#933838</color>
+    <color name="light_orange">#FF9800</color>
 
     <color name="searchTextColor">#7c7d88</color>
     <color name="brown">#A1887F</color>
