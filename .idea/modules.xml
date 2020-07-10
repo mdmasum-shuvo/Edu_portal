@@ -4,8 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/OCD.iml" filepath="$PROJECT_DIR$/OCD.iml" group="OCD" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="edu/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/.idea/modules/commonlib/commonlib.iml" group="edu/commonlib" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/edu.iml" filepath="$PROJECT_DIR$/.idea/modules/edu.iml" group="edu" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/edu-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/edu-app.iml" group="edu/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mobilertc/mobilertc.iml" filepath="$PROJECT_DIR$/.idea/modules/mobilertc/mobilertc.iml" group="edu/mobilertc" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myzoomlibrary/myzoomlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/myzoomlibrary/myzoomlibrary.iml" group="edu/myzoomlibrary" />
     </modules>
   </component>
 </project>

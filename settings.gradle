@@ -1,2 +1,5 @@
+include ':commonlib'
+include ':myzoomlibrary'
+include ':mobilertc'
 rootProject.name='edu'
 include ':app'

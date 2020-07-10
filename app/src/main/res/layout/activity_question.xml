@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".feature.exam.view.QuestionActivity">
+
+        <include layout="@layout/toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?actionBarSize">
+
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:drawableEnd="@drawable/ic_clock"
+                android:gravity="center"
+                android:text="01:20"
+                android:textAlignment="center"
+                android:textColor="@color/red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Question"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:text="1/"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/textView14"
+                app:layout_constraintTop_toTopOf="@+id/textView14" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:text="10"
+                android:textAlignment="gravity"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                app:layout_constraintStart_toEndOf="@+id/textView15" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color"
+                android:text="...................................................................................."
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="@dimen/_280sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:text="A question is an utterance which typically functions as a request for information ?"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@+id/textView18"
+                app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp">
+
+                    <RadioButton
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/radio_button_shape"
+                        android:text="question one"
+                        android:textColor="@color/text_color" />
+
+                    <RadioButton
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/radio_button_shape"
+                        android:text="question two"
+                        android:textColor="@color/text_color" />
+
+                    <RadioButton
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/radio_button_shape"
+                        android:text="question three"
+                        android:textColor="@color/text_color" />
+
+                    <RadioButton
+                        android:layout_width="@dimen/_150sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/radio_button_shape"
+                        android:text="question four"
+                        android:textColor="@color/text_color" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

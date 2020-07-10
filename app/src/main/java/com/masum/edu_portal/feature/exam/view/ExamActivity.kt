@@ -2,6 +2,7 @@ package com.masum.edu_portal.feature.exam.view
 
 import android.os.Build
 import android.view.MenuItem
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
+import com.masum.edu_portal.common.callback_listener.ItemClickListener
 import com.masum.edu_portal.databinding.ActivityExamBinding
 import com.masum.edu_portal.di.ViewModelProviderFactory
 import com.masum.edu_portal.feature.exam.adapter.ExamAdapter
@@ -70,6 +72,19 @@ class ExamActivity : BaseActivity() {
         btnLogout.setOnClickListener{
             logout()
         }
+
+
+        subjectAdapter.setOnItemClickListener(object : ItemClickListener {
+            override fun onClick(position: Int, view: View?) {
+                showToast("item" + position)
+            }
+        })
+
+        examAdapter.setOnItemClickListener(object : ItemClickListener {
+            override fun onClick(position: Int, view: View?) {
+                showToast("item" + position)
+            }
+        })
     }
 
     override fun onInternetConnectivityChanged(isConnected: Boolean) {
