@@ -71,7 +71,7 @@ class ExamViewModel @Inject constructor(
         currentPage++
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
-        builder.addFormDataPart(HTTP_PARAM.SUBJECT_ID, subjectId)
+        builder.addFormDataPart(HTTP_PARAM.SUBJECT_ID, "1")
         builder.addFormDataPart(HTTP_PARAM.CHAPTER_ID, "3")
         builder.addFormDataPart(HTTP_PARAM.CLASS_ID, "9")
         builder.addFormDataPart(HTTP_PARAM.TOPIC_ID, "8")
@@ -109,7 +109,7 @@ class ExamViewModel @Inject constructor(
         currentPage++
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
-        builder.addFormDataPart(HTTP_PARAM.EXAM_ID, examId)
+        builder.addFormDataPart(HTTP_PARAM.EXAM_ID, "1")
 
 
         val source: LiveData<DataResource<QuestionResponse>> =

@@ -1,6 +1,7 @@
 package com.masum.edu_portal.feature.exam.view
 
 import android.os.Build
+import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.Observer
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.masum.edu_portal.DataResource
 import com.masum.edu_portal.R
 import com.masum.edu_portal.common.BaseActivity
+import com.masum.edu_portal.common.Constant
 import com.masum.edu_portal.common.callback_listener.ItemClickListener
 import com.masum.edu_portal.databinding.ActivityExamBinding
 import com.masum.edu_portal.di.ViewModelProviderFactory
@@ -77,12 +79,19 @@ class ExamActivity : BaseActivity() {
         subjectAdapter.setOnItemClickListener(object : ItemClickListener {
             override fun onClick(position: Int, view: View?) {
                 showToast("item" + position)
+                var bundle=Bundle()
+                bundle.putString(Constant.SUBJECT_KEY,subjectList[position].subjectId.toString())
+                startActivity(QuestionActivity::class.java,false,bundle)
+
             }
         })
 
         examAdapter.setOnItemClickListener(object : ItemClickListener {
             override fun onClick(position: Int, view: View?) {
                 showToast("item" + position)
+                var bundle=Bundle()
+                bundle.putString(Constant.EXAM_KEY,examList[position].examId.toString())
+                startActivity(QuestionActivity::class.java,false,bundle)
             }
         })
     }

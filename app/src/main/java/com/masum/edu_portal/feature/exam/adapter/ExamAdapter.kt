@@ -37,6 +37,7 @@ class ExamAdapter  constructor(private val context: Context?, private val list: 
         if (holder is ViewFilesHolder) {
             holder.binding.data=list!!.get(position)
             holder.itemView.setOnClickListener {
+                listener.onClick(position,holder.itemView)
             }
         }
     }

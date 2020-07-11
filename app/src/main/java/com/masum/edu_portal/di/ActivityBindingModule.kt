@@ -40,7 +40,7 @@ abstract class ActivityBindingModule {
     @ContributesAndroidInjector(modules = [HomeworkViewModelModule::class])
     abstract fun homeworkActivity():HomeWorkActivity
 
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector(modules = [ExamViewModelModule::class])
     abstract fun questionActivity():QuestionActivity
 
 }

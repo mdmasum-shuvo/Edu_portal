@@ -1,5 +1,6 @@
 package com.masum.edu_portal.feature.exam.data.question
 
+import android.util.Log
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -22,7 +23,7 @@ class Datum {
 
     @SerializedName("duration")
     @Expose
-    var duration: Int? = null
+    var duration: Long? = null
 
     @SerializedName("question_title")
     @Expose
