@@ -18,9 +18,6 @@ import com.masum.edu_portal.feature.myclass.adapter.TodaysClassAdapter
 import com.masum.edu_portal.feature.myclass.data.Datum
 import com.masum.edu_portal.myviewmodel.ClassViewModel
 import kotlinx.android.synthetic.main.activity_my_class.*
-import kotlinx.android.synthetic.main.fragment_home_dashboard.*
-import kotlinx.android.synthetic.main.player_layout.view.*
-import kotlinx.android.synthetic.main.toolbar.*
 import java.util.ArrayList
 import javax.inject.Inject
 
@@ -47,6 +44,7 @@ class MyClassActivity : BaseActivity() {
             setOnlyStatusBarTransparent()
         }
         binding = getBinding() as ActivityMyClassBinding
+        binding.pullToRefresh.setOnRefreshListener(this)
         setRecylerView()
         classViewModel =
             ViewModelProviders.of(this, viewModelProviderFactory).get(ClassViewModel::class.java)
@@ -81,9 +79,7 @@ class MyClassActivity : BaseActivity() {
             startActivity(intent)
         }
 
-        btnLogout.setOnClickListener{
-            logout()
-        }
+
     }
 
     override fun onInternetConnectivityChanged(isConnected: Boolean) {
@@ -94,7 +90,6 @@ class MyClassActivity : BaseActivity() {
 
     override fun onRefresh() {
         classViewModel.getUpComingClassData()
-        binding.pullToRefresh.isRefreshing=false
     }
 
     private fun obServeClassData() {

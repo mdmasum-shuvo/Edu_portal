@@ -29,10 +29,10 @@ class QuestionActivity : BaseActivity() {
     private var cTimer: CountDownTimer? = null
     private var countQuestion = 0;
     private var scoreCount: Int = 0
-    private var wrngCount: Int = 0
+    private var wrongCount: Int = 0
     private var option = arrayOfNulls<String>(4)
     private var ansArray = arrayOfNulls<String>(4)
-    private var corrctAns: Int = 0;
+    private var correctAns: Int = 0;
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
@@ -68,7 +68,6 @@ class QuestionActivity : BaseActivity() {
             countQuestion++
             cancelTimer()
             startTimer(countQuestion)
-
         }
 
         binding.btnFinishExam.setOnClickListener {
@@ -158,7 +157,7 @@ class QuestionActivity : BaseActivity() {
             binding.containExamDetail.visibility = View.VISIBLE
             binding.containQuestion.visibility = View.GONE
             binding.tvScore.text = "Total Score : " + scoreCount
-            binding.tvWrong.text = "Wrong ans:" + wrngCount
+            binding.tvWrong.text = "Wrong ans:" + wrongCount
             binding.tvQ.text = "Total Question: " + questionList.size
             return
         }
@@ -179,17 +178,16 @@ class QuestionActivity : BaseActivity() {
         var qthree = ansArray[2]
         var qfour = ansArray[3]
         if (qOne!!.equals("1")) {
-            corrctAns = ansArray[0]!!.toInt()
+            correctAns = ansArray[0]!!.toInt()
         } else if (qtwo!!.equals("1")) {
-            corrctAns = ansArray[1]!!.toInt()
+            correctAns = ansArray[1]!!.toInt()
 
         } else if (qthree!!.equals("1")) {
-            corrctAns = ansArray[2]!!.toInt()
+            correctAns = ansArray[2]!!.toInt()
 
         } else if (qfour!!.equals("1")) {
-            corrctAns = ansArray[3]!!.toInt()
+            correctAns = ansArray[3]!!.toInt()
         }
-
 
         var quesNo = countQuestion + 1
         binding.tvQuestionNo.text = "" + quesNo + "/"
@@ -222,27 +220,24 @@ class QuestionActivity : BaseActivity() {
             /*  for (i in option) {
 
               }*/
-
-            if (option[corrctAns]!!.equals(value)) {
+            if (option[correctAns]!!.equals(value)) {
                 isTrue = true
-                corrctAns++
+                correctAns++
 
                 Log.e(
                     "data",
-                    "Correct: " + option[corrctAns] + " selected value " + value + ": true"
+                    "Correct: " + option[correctAns] + " selected value " + value + ": true"
                 )
 
             } else {
                 isTrue = false
-                wrngCount++
+                wrongCount++
                 Log.e(
                     "data",
-                    "Correct: " + option[corrctAns] + " selected value: " + value + " : false"
+                    "Correct: " + option[correctAns] + " selected value: " + value + " : false"
                 )
             }
-
         }
-
         binding.rbGroup.clearCheck()
     }
 

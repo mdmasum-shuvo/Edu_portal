@@ -116,6 +116,9 @@ dependencies {
     implementation 'com.github.jrizani:JRSpinner:1.0.0'
     implementation project(':myzoomlibrary')
 
+    //you tube player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
 }
 
 def getBaseUrl() {

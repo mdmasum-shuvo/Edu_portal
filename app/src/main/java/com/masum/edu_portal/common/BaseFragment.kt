@@ -7,10 +7,12 @@ import android.app.ProgressDialog
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Build
+import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -87,6 +89,19 @@ open abstract class BaseFragment : DaggerFragment(), InternetConnectivityListene
     fun showEmptyView() {
         noDataView.visibility = View.VISIBLE
         ll_internetstate_container.visibility = View.GONE
+    }
+
+    open fun startActivity(
+        cls: Class<*>?,
+        finishSelf: Boolean,
+        bundle: Bundle?
+    ) {
+        val intent = Intent(activity, cls)
+        intent.putExtras(bundle!!)
+        startActivity(intent)
+        if (finishSelf) {
+            activity!!.finish()
+        }
     }
 
 

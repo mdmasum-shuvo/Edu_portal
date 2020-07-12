@@ -29,7 +29,7 @@ class AuthViewModel @Inject constructor(
         val builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart(HTTP_PARAM.USER_NAME, userName)
         builder.addFormDataPart(HTTP_PARAM.PASSWORD, password)
-        builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, orgId.toString())
+        builder.addFormDataPart(HTTP_PARAM.ORGANISATION_ID, "1")
         return LiveDataReactiveStreams.fromPublisher(
             authApi.authentication(builder.build())
                 .onErrorReturn(object : Function<Throwable, LoginResponse> {

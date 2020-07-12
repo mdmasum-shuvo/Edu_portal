@@ -9,7 +9,9 @@ import com.masum.edu_portal.feature.launch.view.LauncherActivity
 import com.masum.edu_portal.feature.member.view.MyProfileActivity
 import com.masum.edu_portal.feature.member.view.ProfileActivity
 import com.masum.edu_portal.feature.myclass.view.MyClassActivity
+import com.masum.edu_portal.feature.others.OthersActivity
 import com.masum.edu_portal.feature.study.view.StudyActivity
+import com.masum.edu_portal.feature.study.view.ViewViewActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -42,5 +44,12 @@ abstract class ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [ExamViewModelModule::class])
     abstract fun questionActivity():QuestionActivity
+
+
+    @ContributesAndroidInjector(modules = [AcademyViewmodelModule::class])
+    abstract fun otherActivity():OthersActivity
+
+    @ContributesAndroidInjector(modules = [StudyViewModelModule::class])
+    abstract fun videoViewActivity(): ViewViewActivity
 
 }

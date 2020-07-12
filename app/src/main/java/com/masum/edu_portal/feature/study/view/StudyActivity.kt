@@ -28,8 +28,8 @@ import javax.inject.Inject
 class StudyActivity : BaseActivity() {
     private lateinit var binding: ActivityStudyBinding
     private var allStudyList = ArrayList<Datum>()
-    private var allVideoLectureList = ArrayList<Datum>()
     private var allLastLectureList = ArrayList<Datum>()
+    private var allVideoLectureList = ArrayList<Datum>()
     private lateinit var lastClassLectureAdapter: LastClassLectureAdapter
     private lateinit var allVideoLectureAdapter: AllVideoLectureAdapter
     private lateinit var allClassLectureAdapter: AllClassAdapter
@@ -244,13 +244,13 @@ class StudyActivity : BaseActivity() {
                     }
 
                     else -> {
-                       // showToast("Limited Data")
+                        // showToast("Limited Data")
 
-                 /*       var bundle = Bundle()
-                        bundle.putSerializable(Constant.INTENT_KEY, allStudyList.get(position))
-                        var intent = Intent(this@StudyActivity, ProfileActivity::class.java)
-                        intent.putExtras(bundle)
-                        startActivity(intent)*/
+                        /*       var bundle = Bundle()
+                               bundle.putSerializable(Constant.INTENT_KEY, allStudyList.get(position))
+                               var intent = Intent(this@StudyActivity, ProfileActivity::class.java)
+                               intent.putExtras(bundle)
+                               startActivity(intent)*/
                     }
                 }
 
@@ -262,17 +262,19 @@ class StudyActivity : BaseActivity() {
                 //toast("item" + position)
                 when (view!!.id) {
                     R.id.ll_see_all_holder -> {
-                        showToast("Limited Data")
+                        var intent = Intent(this@StudyActivity, ViewViewActivity::class.java)
+                        //intent.putExtras(bundle)
+                        startActivity(intent)
                     }
 
                     else -> {
-                       // showToast("Limited Data")
+                        // showToast("Limited Data")
 
-                 /*       var bundle = Bundle()
-                        bundle.putSerializable(Constant.INTENT_KEY, allStudyList.get(position))
-                        var intent = Intent(this@StudyActivity, ProfileActivity::class.java)
-                        intent.putExtras(bundle)
-                        startActivity(intent)*/
+                        /*     var bundle = Bundle()
+                             bundle.putSerializable(Constant.INTENT_KEY, allStudyList.get(position))*/
+                        var intent = Intent(this@StudyActivity, ViewViewActivity::class.java)
+                        //intent.putExtras(bundle)
+                        startActivity(intent)
                     }
                 }
 
@@ -290,7 +292,7 @@ class StudyActivity : BaseActivity() {
             }
         })
 
-        btnLogout.setOnClickListener{
+        btnLogout.setOnClickListener {
             logout()
         }
     }

@@ -30,6 +30,7 @@ import com.masum.edu_portal.databinding.FragmentHomeDashboardBinding
 import com.masum.edu_portal.di.ViewModelProviderFactory
 import com.masum.edu_portal.feature.exam.adapter.ExamAdapter
 import com.masum.edu_portal.feature.exam.view.ExamActivity
+import com.masum.edu_portal.feature.exam.view.QuestionActivity
 import com.masum.edu_portal.feature.home.adapter.DashboardAdapter
 import com.masum.edu_portal.feature.home.data.DashboardList
 import com.masum.edu_portal.feature.home.data.class_mate.Datum
@@ -345,6 +346,14 @@ class HomeDashboardFragment : BaseFragment() {
             }
         })
 
+        examAdapter.setOnItemClickListener(object : ItemClickListener {
+            override fun onClick(position: Int, view: View?) {
+                showToast("item" + position)
+                var bundle=Bundle()
+                bundle.putString(Constant.EXAM_KEY,examList[position].examId.toString())
+                startActivity(QuestionActivity::class.java,false,bundle)
+            }
+        })
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

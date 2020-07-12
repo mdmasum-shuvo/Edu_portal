@@ -243,6 +243,11 @@ class HomeWorkActivity : BaseActivity() {
     }
 
 
+    override fun onStop() {
+        mInternetAvailabilityChecker!!.removeInternetConnectivityChangeListener(this);
+        super.onStop()
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

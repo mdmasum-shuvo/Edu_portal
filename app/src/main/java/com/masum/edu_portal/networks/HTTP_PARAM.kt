@@ -24,6 +24,8 @@ object HTTP_PARAM {
     const val NEW_HOMEWORK="newhomeworklist"
     const val POST_HOMEWORK="homeworksubmited"
     const val ALL_HOMEWORK="homeworkmark"
+        const val OFFICIAL_LIST="officiallist"
+    const val TEACHER_LIST="teacherlist"
 
 
 

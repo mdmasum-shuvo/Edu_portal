@@ -85,10 +85,10 @@ class LoginFragment : BaseFragment() {
         if ( binding.etUserName.text.toString().equals("") || binding.etPassword.text.toString().equals("")){
             return false
         }
-        else if(organizationId==-1){
+    /*    else if(organizationId==-1){
             showErrorDialog("Error","Please select your institute")
             return false
-        }
+        }*/
         return true
 
     }
@@ -131,6 +131,8 @@ class LoginFragment : BaseFragment() {
         binding.spnOrg.setOnItemClickListener(JRSpinner.OnItemClickListener { position ->
             organizationId = data[position].orgId!!
         })
+        binding.spnOrg.setText("South Assign College")
+
     }
 
 

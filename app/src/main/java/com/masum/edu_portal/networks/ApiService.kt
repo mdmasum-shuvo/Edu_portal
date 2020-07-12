@@ -6,6 +6,7 @@ import com.masum.edu_portal.feature.exam.data.question.QuestionResponse
 import com.masum.edu_portal.feature.home.data.class_mate.ClassMateResponse
 import com.masum.edu_portal.feature.homework.data.PostResponse
 import com.masum.edu_portal.feature.homework.data.all_homework.HomeWorkResponse
+import com.masum.edu_portal.feature.member.data.official.OfficialResponse
 import com.masum.edu_portal.feature.member.data.profile.attendance.AttendanceResponse
 import com.masum.edu_portal.feature.myclass.data.ClassListResponse
 import com.masum.edu_portal.feature.study.data.all_study.AllStudyResponse
@@ -119,5 +120,21 @@ interface ApiService {
         @Body requestBody: RequestBody,
         @Header(HTTP_PARAM.AUTHORIZATION) token: String?
     ): Flowable<PostResponse>
+
+
+    //academy
+    @POST(HTTP_PARAM.OFFICIAL_LIST)
+    fun officialList(
+        @Body requestBody: RequestBody,
+        @Header(HTTP_PARAM.AUTHORIZATION) token: String?
+    ): Flowable<OfficialResponse>
+
+
+    @POST(HTTP_PARAM.TEACHER_LIST)
+    fun teacherlList(
+        @Body requestBody: RequestBody,
+        @Header(HTTP_PARAM.AUTHORIZATION) token: String?
+    ): Flowable<OfficialResponse>
+
 
 }
