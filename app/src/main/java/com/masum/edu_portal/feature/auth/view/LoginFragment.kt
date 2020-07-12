@@ -73,7 +73,6 @@ class LoginFragment : BaseFragment() {
                     binding.etPassword.text.toString(),organizationId
                 )
             }
-
         })
 
         subcribeAuthentcationObserver()
@@ -90,10 +89,7 @@ class LoginFragment : BaseFragment() {
             return false
         }*/
         return true
-
     }
-
-
 
     private fun observeOrganizationData() {
         globalViewModel.organization.observe(this, Observer { dataSource ->
